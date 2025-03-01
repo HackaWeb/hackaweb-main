@@ -12,6 +12,7 @@ import { popAnimation, popAnimationWithTransform } from "@/constants";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { closeModal } from "@/store/slices/openedModal";
 import { LabelInput } from "@/components/ui/LabelInput";
+import SaveBtn from "@/components/ui/SaveBtn";
 
 export const CreateSmth = () => {
     const dispatch = useAppDispatch();
@@ -119,13 +120,7 @@ export const CreateSmth = () => {
                         onChange={(e) => setDuration(e.target.value)}
                         className="mt-4"
                     />
-                    <Button
-                        color="purpleBackground"
-                        type="submit"
-                        className="mx-auto px-16 mt-8"
-                    >
-                        Зберегти
-                    </Button>
+                    <SaveBtn className="mx-auto px-16 mt-8" />
                 </form>
             </div>
         </motion.div>

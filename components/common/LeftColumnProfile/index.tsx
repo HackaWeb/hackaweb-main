@@ -11,12 +11,14 @@ import { LeftColumnProfileProps } from "./LeftColumnProfile.props";
 import { motion } from "framer-motion";
 import { popAnimation, SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { printUserNickname } from "@/helpers/printUserNickname";
+import { useTranslations } from "next-intl";
 
 export const LeftColumnProfile = ({
     profile,
     isEditable,
 }: LeftColumnProfileProps) => {
     const router = useRouter();
+    const t = useTranslations("Profile");
 
     const [avatar, setAvatar] = useState<string | null>(
         profile.avatarUrl ?? null,
@@ -103,7 +105,7 @@ export const LeftColumnProfile = ({
                 </div>
                 {isEditable && (
                     <label className="underline text-purple mt-2 text-center block cursor-pointer">
-                        Змінити аватар
+                        {t("change-avatar")}
                         <input
                             type="file"
                             accept=".png,.jpeg"

@@ -9,6 +9,7 @@ import { ProfileFormProps } from "./ProfileForm.props";
 import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { useTranslations } from "next-intl";
+import SaveBtn from "@/components/ui/SaveBtn";
 
 export const ProfileForm = ({
     profile,
@@ -91,13 +92,7 @@ export const ProfileForm = ({
                     className="mt-6"
                 />
                 {isEditable && (
-                    <Button
-                        type="submit"
-                        color="purpleBackground"
-                        className="mt-6 mx-auto mb-2"
-                    >
-                        Зберегти
-                    </Button>
+                    <SaveBtn type="submit" className="mt-6 mx-auto mb-2" />
                 )}
             </form>
         </div>
