@@ -20,7 +20,10 @@ const promptHistory = [
     [4, "Що таке AI?", "2024-02-13"],
 ];
 
-export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
+export const UserDetailsPageComponent = ({
+    profile,
+    isEditable,
+}: UserProfileProps) => {
     const t = useTranslations("Profile");
     return (
         profile && (
@@ -37,13 +40,13 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
                     <div>
                         <LeftColumnProfile
                             profile={profile}
-                            isEditable={true}
+                            isEditable={isEditable}
                         />
                     </div>
                     <div className="overflow-hidden">
                         <ProfileForm
                             profile={profile}
-                            isEditable={true}
+                            isEditable={isEditable}
                             isSelfProfile={false}
                         />
                         <PromptHistory history={promptHistory} />
