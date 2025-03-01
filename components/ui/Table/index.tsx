@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { TableProps } from "./Table.props";
 import { Modal } from "@/types/modal.enum";
 import { selectOpenedModal } from "@/store/slices/openedModal";
-
 export const Table = ({ headers, data, className }: TableProps) => {
     const tableContainerRef = useRef<HTMLDivElement | null>(null);
     const tableRef = useRef<HTMLTableElement | null>(null);
@@ -70,80 +69,97 @@ export const Table = ({ headers, data, className }: TableProps) => {
                 setScrollLeft(tableContainerRef.current?.scrollLeft || 0)
             }
         >
-            {/* Sticky Header */}
-            {isSticky && openedModal === Modal.None && (
-                <div
-                    className="fixed top-0 left-0 bg-[#b1b2b8] shadow-md z-50 max-w-full overflow-x-hidden "
-                    style={{
-                        width: tableWidth,
-                        left: tableLeft - scrollLeft, // Keeps it aligned with the table
-                        boxSizing: "border-box", // Prevent overflow due to padding/borders
-                    }}
-                >
-                    <table className="border-collapse text-primary w-full">
-                        <thead>
-                            <tr className="bg-secondary-light text-primary">
-                                {headers.map((header, index) => (
-                                    <th
-                                        key={index}
-                                        className="p-3 text-left"
-                                        style={{
-                                            width:
-                                                columnWidths[index] || "auto",
-                                        }}
-                                    >
-                                        {header}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            )}
+            {/* Wrapper div to ensure proper positioning of header and table */}
+            <div className="relative">
+                {/* Overlay to hide overflowed cloned header (on the left side) */}
+                {isSticky && openedModal === Modal.None && (
+                    <div
+                        className="absolute top-0 left-0 z-50"
+                        style={{
+                            width: `${scrollLeft}px`, // Adjust overlay width to match scroll left
+                            height: "100%", // Ensure it covers the full height
+                            display: "block", // Only show when sticky
+                        }}
+                    ></div>
+                )}
 
-            {/* Original Table */}
-            <table
-                ref={tableRef}
-                className="min-w-max border-collapse text-primary w-full"
-            >
-                <thead>
-                    <tr className="bg-secondary-light text-primary">
-                        {headers.map((header, index) => (
-                            <th key={index} className="p-3 text-left">
-                                {header}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.length ? (
-                        data.map((row, rowIndex) => (
-                            <tr
-                                key={rowIndex}
-                                className="border-t border-gray-800"
-                            >
-                                {row.map((cell, cellIndex) => (
-                                    <td
-                                        key={cellIndex}
-                                        className="py-2 px-2 text-sm xsm:text-base"
-                                    >
-                                        {cell}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td
-                                colSpan={headers.length}
-                                className="py-2 px-2 text-center"
-                            >
-                                Немає даних
-                            </td>
+                {/* Sticky Header */}
+                {isSticky && openedModal === Modal.None && (
+                    <div
+                        className="fixed top-0 left-0 bg-secondary-light backdrop-blur-lg shadow-md z-50"
+                        style={{
+                            width: tableWidth,
+                            left: tableLeft - scrollLeft, // Keeps it aligned with the table
+                            boxSizing: "border-box", // Prevent overflow due to padding/borders
+                            clipPath: `inset(0px ${scrollLeft}px 0px 0px)`, // Clip the header if it overflows
+                        }}
+                    >
+                        <table className="border-collapse text-primary w-full">
+                            <thead>
+                                <tr className="bg-secondary-light text-primary">
+                                    {headers.map((header, index) => (
+                                        <th
+                                            key={index}
+                                            className="p-3 text-left"
+                                            style={{
+                                                width:
+                                                    columnWidths[index] ||
+                                                    "auto",
+                                            }}
+                                        >
+                                            {header}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                )}
+
+                {/* Original Table */}
+                <table
+                    ref={tableRef}
+                    className="min-w-max border-collapse text-primary w-full"
+                >
+                    <thead>
+                        <tr className="bg-secondary-light text-primary">
+                            {headers.map((header, index) => (
+                                <th key={index} className="p-3 text-left">
+                                    {header}
+                                </th>
+                            ))}
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.length ? (
+                            data.map((row, rowIndex) => (
+                                <tr
+                                    key={rowIndex}
+                                    className="border-t border-gray-800"
+                                >
+                                    {row.map((cell, cellIndex) => (
+                                        <td
+                                            key={cellIndex}
+                                            className="py-2 px-2 text-sm xsm:text-base"
+                                        >
+                                            {cell}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td
+                                    colSpan={headers.length}
+                                    className="py-2 px-2 text-center"
+                                >
+                                    Немає даних
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
