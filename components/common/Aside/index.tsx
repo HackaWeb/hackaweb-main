@@ -12,16 +12,18 @@ import { usePathname } from "@/helpers/navigation";
 import { Link } from "@/helpers/navigation";
 import { IoLogoSnapchat } from "react-icons/io";
 import { IoChatbubbleEllipses } from "react-icons/io5";
+import { useTranslations } from "next-intl";
 
 export const Aside = ({ profile }: AsideProps) => {
+    const t = useTranslations("Aside");
     const links = [
         {
-            title: "Чат",
+            title: t("chat"),
             link: "/",
             icon: <IoChatbubbleEllipses className="size-6" />,
         },
         {
-            title: "Мій кабінет",
+            title: t("profile"),
             link: profile ? "/profile" : "/login",
             icon: <AiOutlineUser className="size-6" />,
         },

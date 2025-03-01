@@ -8,9 +8,11 @@ import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
 import { Table } from "@/components/ui/Table";
 import MyKeys from "@/components/common/MyKeys";
+import { useTranslations } from "next-intl";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
-    const headers = ["ID", "Вміст запиту", "Дата"];
+    const t = useTranslations("Profile");
+    const headersT = useTranslations("PromptTable");
 
     const data = [
         [1, "Створи таску в Трелло", "2024-02-15"],
@@ -24,7 +26,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             {...slideFromBottomAnimation}
             className="mt-8 bg-secondary-light p-6 rounded-md"
         >
-            <h1 className="text-primary">Мій кабінет</h1>
+            <h1 className="text-primary">{t("my-profile")}</h1>
             <ReturnBtn className="mt-4" />
             <div className="mt-8 grid grid-cols-[1fr] sm:grid-cols-[240px_auto] 2xl:grid-cols-[240px_auto] gap-6 items-start">
                 <LeftColumnProfile profile={profile} isEditable={true} />
@@ -38,11 +40,13 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     <div>
                         <div className="bg-secondary-light p-4 rounded-md overflow-hidden">
                             <div className="text-primary font-semibold text-lg">
-                                Історія запитів
+                                {t("prompt-history")}
                             </div>
                             <Table
                                 className="mt-4"
-                                headers={headers}
+                                headers={["id", "contents", "date"].map(
+                                    (item) => headersT(item),
+                                )}
                                 data={data}
                             />
                         </div>

@@ -8,6 +8,7 @@ import { useRouter } from "@/helpers/navigation";
 import { ProfileFormProps } from "./ProfileForm.props";
 import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
+import { useTranslations } from "next-intl";
 
 export const ProfileForm = ({
     profile,
@@ -15,6 +16,7 @@ export const ProfileForm = ({
     isSelfProfile,
 }: ProfileFormProps) => {
     const router = useRouter();
+    const t = useTranslations("Profile");
 
     const [userData, setUserData] = useState({
         firstName: profile.firstName || "",
@@ -35,7 +37,7 @@ export const ProfileForm = ({
             });
 
             if (response.id) {
-                toast.success("Профіль успішно оновлено");
+                toast.success(t("update-success"));
                 router.refresh();
             }
         } catch (error) {
@@ -49,9 +51,7 @@ export const ProfileForm = ({
             <form onSubmit={onUpdateProfileSubmit}>
                 <LabelInput
                     id="email"
-                    labelTitle={
-                        isSelfProfile ? "Ваша пошта" : `Пошта користувача`
-                    }
+                    labelTitle={t(isSelfProfile ? "your-email" : "user-email")}
                     value={profile.email}
                     type="email"
                     disabled
@@ -60,9 +60,7 @@ export const ProfileForm = ({
                 />
                 <LabelInput
                     id="firstName"
-                    labelTitle={
-                        isSelfProfile ? "Ваше імʼя" : "Імʼя користувача"
-                    }
+                    labelTitle={t(isSelfProfile ? "your-name" : "user-name")}
                     value={userData.firstName}
                     type="text"
                     placeholder={isEditable ? "Введіть ім'я..." : ""}
@@ -77,9 +75,9 @@ export const ProfileForm = ({
                 />
                 <LabelInput
                     id="lastName"
-                    labelTitle={
-                        isSelfProfile ? "Ваше прізвище" : "Прізвище користувача"
-                    }
+                    labelTitle={t(
+                        isSelfProfile ? "your-surname" : "user-surname",
+                    )}
                     value={userData.lastName}
                     type="text"
                     placeholder={isEditable ? "Введіть прізвище..." : ""}
