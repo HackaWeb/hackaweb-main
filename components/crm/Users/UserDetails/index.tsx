@@ -10,21 +10,18 @@ import { ProfileForm } from "@/components/common/ProfileForm";
 import { Table } from "@/components/ui/Table";
 import { useTranslations } from "next-intl";
 import PromptHistory from "@/components/common/PromptHistory";
+import { useMessages } from "@/hooks/useMessages";
 
 const headers = ["ID", "Name", "Email", "Role"];
-
-const promptHistory = [
-    [1, "Створи таску в Трелло", "2024-02-15"],
-    [3, "Створи опис для нового курсу по програмуванню", "2024-02-12"],
-    [2, "Привіт gpt", "2024-02-14"],
-    [4, "Що таке AI?", "2024-02-13"],
-];
 
 export const UserDetailsPageComponent = ({
     profile,
     isEditable,
 }: UserProfileProps) => {
     const t = useTranslations("Profile");
+
+    const { messages } = useMessages(profile);
+
     return (
         profile && (
             <motion.div
@@ -49,7 +46,7 @@ export const UserDetailsPageComponent = ({
                             isEditable={isEditable}
                             isSelfProfile={false}
                         />
-                        <PromptHistory history={promptHistory} />
+                        <PromptHistory history={messages} />
                     </div>
                 </div>
             </motion.div>
