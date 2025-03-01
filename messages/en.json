@@ -61,5 +61,8 @@
         "status-completed": "Completed",
         "id": "ID",
         "user": "User"
+    },
+    "Table": {
+        "no-data": "No data"
     }
 }
