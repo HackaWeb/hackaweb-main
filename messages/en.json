@@ -29,6 +29,7 @@
         "no-account": "Don't have an account? Register!"
     },
     "Header": {
+        "log-out": "Log out",
         "balance": "Balance",
         "deposit": "Deposit",
         "login": "Login",
@@ -44,6 +45,7 @@
         "save": "Save"
     },
     "Profile": {
+        "user": "User",
         "my-profile": "My profile",
         "user-profile": "Profile of",
         "your-email": "Your email",
