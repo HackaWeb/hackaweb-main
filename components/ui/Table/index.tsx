@@ -22,7 +22,10 @@ export const Table = ({ headers, data, className }: TableProps) => {
                                 className="border-t border-gray-800"
                             >
                                 {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex} className="py-2 xsm:px-4 px-2 text-sm xsm:text-base">
+                                    <td
+                                        key={cellIndex}
+                                        className="py-2 xsm:px-4 px-2 text-sm xsm:text-base max-w-48 break-words overflow-wrap"
+                                    >
                                         {cell}
                                     </td>
                                 ))}
