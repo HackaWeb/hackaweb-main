@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import * as signalR from "@microsoft/signalr";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IoSend } from "react-icons/io5";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -9,106 +8,20 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { ChatProps } from "./Chat.props";
 import { Skeleton } from "./Skeleton";
+import { useMessages } from "@/hooks/useMessages";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
-    const [connection, setConnection] = useState<signalR.HubConnection | null>(
-        null,
-    );
-    const [messageInput, setMessageInput] = useState("");
-    const [messages, setMessages] = useState<
-        { sender: string; text: string; sentAt: string }[]
-    >([]);
-    const [isSending, setIsSending] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const {
+        messages,
+        loading,
+        setLoading,
+        isSending,
+        sendMessage,
+        messageInput,
+        setMessageInput,
+    } = useMessages(profile);
+
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        const hubUrl = process.env.NEXT_PUBLIC_CHAT_HUB_URL as string;
-        const newConnection = new signalR.HubConnectionBuilder()
-            .withUrl(hubUrl)
-            .withAutomaticReconnect()
-            .build();
-
-        setConnection(newConnection);
-    }, []);
-
-    useEffect(() => {
-        if (connection) {
-            connection
-                .start()
-                .then(() => {
-                    console.log("Connected to ChatHub!");
-                    setMessages((prev) => [...prev]);
-                    loadChatHistory();
-
-                    connection.on(
-                        "ReceiveResponse",
-                        (serverResponse: string) => {
-                            console.log(serverResponse);
-                            setMessages((prev) => [
-                                ...prev,
-                                {
-                                    sender: "Server",
-                                    text: serverResponse,
-                                    sentAt: new Date().toLocaleString("uk-UA"),
-                                },
-                            ]);
-                        },
-                    );
-
-                    connection.on("ReceiveSystemMessage", (sysMsg: string) => {
-                        setMessages((prev) => [
-                            ...prev,
-                            {
-                                sender: "System",
-                                text: sysMsg,
-                                sentAt: new Date().toLocaleString("uk-UA"),
-                            },
-                        ]);
-                    });
-                })
-                .catch((error) =>
-                    console.error("Не вдалося підключитись: ", error),
-                );
-        }
-    }, [connection]);
-
-    const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (connection && messageInput.trim()) {
-            setIsSending(true);
-            setMessageInput("");
-            try {
-                await connection.invoke("SendMessage", messageInput);
-                setMessages((prev) => [
-                    ...prev,
-                    {
-                        sender: profile.firstName || "Користувач",
-                        text: messageInput,
-                        sentAt: new Date().toLocaleString("uk-UA"),
-                    },
-                ]);
-            } catch (error) {
-                console.error("Помилка при надсиланні повідомлення: ", error);
-            } finally {
-                setIsSending(false);
-            }
-        }
-    };
-
-    const loadChatHistory = async () => {
-        if (connection) {
-            try {
-                const history = await connection.invoke("LoadChatHistory");
-                console.log("Історія чату: ", history);
-                setMessages((prev) => [...prev, ...history]);
-                setLoading(false);
-            } catch (error) {
-                console.error("Помилка при завантаженні історії чату: ", error);
-                setLoading(false);
-            }
-        }
-    };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -126,6 +39,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
+        console.log(messages);
     }, [messages]);
 
     return (
@@ -149,7 +63,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                       animate={{ opacity: 1, y: 0 }}
                                       className={`p-3 rounded-lg max-w-xl ${
                                           msg.sender === profile.firstName ||
-                                          msg.sender === "Користувач"
+                                          msg.sender === "User"
                                               ? "bg-secondary-dark ml-auto text-right"
                                               : "bg-secondary-light"
                                       }`}
@@ -158,7 +72,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                           {msg.sender}:
                                       </div>
                                       <div className="text-primary mt-1 break-words">
-                                          {msg.text}
+                                          {msg.message}
                                       </div>
                                       <div className="text-primary mt-1 break-words text-xs font-semibold text-right">
                                           {msg.sentAt}
@@ -172,7 +86,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 className={`p-3 rounded-lg max-w-xl ${
                                     msg.sender === profile.firstName ||
-                                    msg.sender === "Користувач"
+                                    msg.sender === "User"
                                         ? "bg-secondary-dark ml-auto text-right"
                                         : "bg-secondary-light"
                                 }`}
@@ -181,7 +95,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                     {msg.sender}:
                                 </div>
                                 <div className="text-primary mt-1 break-words">
-                                    {msg.text}
+                                    {msg.message}
                                 </div>
                                 <div className="text-primary mt-1 break-words text-xs font-semibold text-right">
                                     {msg.sentAt}

@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { PromptHistoryProps } from "./PromptHistory.props";
 
-const PromptHistory = ({ history: data }: PromptHistoryProps) => {
+const PromptHistory = ({ history }: PromptHistoryProps) => {
     const t = useTranslations("Profile");
     const headersT = useTranslations("PromptTable");
+
     return (
         <div>
             <div className="bg-secondary-light p-4 rounded-md overflow-hidden">
@@ -17,7 +18,13 @@ const PromptHistory = ({ history: data }: PromptHistoryProps) => {
                     headers={["id", "contents", "date"].map((item) =>
                         headersT(item),
                     )}
-                    data={data}
+                    data={history
+                        .filter((item) => item.sender === "User")
+                        .map((item, index) => [
+                            index + 1,
+                            item.message,
+                            item.sentAt,
+                        ])}
                 />
             </div>
         </div>
