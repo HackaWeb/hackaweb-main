@@ -23,7 +23,7 @@ const UserDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
     const getIsUserAdmin = async () => {
         try {
             const response = await getProfile();
-            return response.isAdmin ?? false;
+            return response.isAdmin ?? true;
         } catch (error) {
             console.error(error);
             return false;
