@@ -34,7 +34,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     />
                     <MyKeys />
                     <PromptHistory history={messages} />
-                    <Transactions />
+                    <Transactions transactions={[]} />
                 </div>
             </div>
         </motion.div>
