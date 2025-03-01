@@ -65,7 +65,7 @@ export const ProfileForm = ({
                     labelTitle={t(isSelfProfile ? "your-name" : "user-name")}
                     value={userData.firstName}
                     type="text"
-                    placeholder={isEditable ? "Введіть ім'я..." : ""}
+                    placeholder={isEditable ? t("your-name-placeholder") : ""}
                     disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({
@@ -82,7 +82,9 @@ export const ProfileForm = ({
                     )}
                     value={userData.lastName}
                     type="text"
-                    placeholder={isEditable ? "Введіть прізвище..." : ""}
+                    placeholder={
+                        isEditable ? t("your-surname-placeholder") : ""
+                    }
                     disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({

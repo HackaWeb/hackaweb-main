@@ -52,8 +52,10 @@
         "user-email": "Пошта користувача",
         "your-name": "Ваше ім'я",
         "user-name": "Ім'я користувача",
+        "your-name-placeholder": "Введіть ім'я..",
         "your-surname": "Ваше прізвище",
         "user-surname": "Прізвище користувача",
+        "your-surname-placeholder": "Введіть прізвище..",
         "your-keys": "Ваші API ключі",
         "update-success": "Профіль успішно оновлено",
         "trello-key-placeholder": "Введіть API ключ Trello",
@@ -95,7 +97,16 @@
         "status-pending": "Очікується",
         "status-completed": "Завершено",
         "id": "ID",
-        "user": "Користувач"
+        "user": "Користувач",
+        "first-name": "Ім'я",
+        "last-name": "Прізвище",
+        "email": "Пошта",
+        "registration-date": "Дата реєстрації",
+        "balance": "Баланс",
+        "actions": "Дії",
+        "edit": "Редагувати",
+        "delete": "Видалити",
+        "users-list": "Список користувачів"
     },
     "Table": {
         "no-data": "Немає даних"

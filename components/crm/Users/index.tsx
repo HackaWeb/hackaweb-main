@@ -14,14 +14,15 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
     const t = useTranslations("Users");
 
     const router = useRouter();
+
     const headers = [
-        "ID",
-        "First Name",
-        "Last Name",
-        "Email",
-        "Registration Date",
-        "Balance",
-        "Actions",
+        t("id"),
+        t("first-name"),
+        t("last-name"),
+        t("email"),
+        t("registration-date"),
+        t("balance"),
+        t("actions"),
     ];
 
     const deleteUserHandler = async (userId: string) => {
@@ -53,7 +54,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
             <Link href={`/crm/users/${user.id}`} key={user.id}>
                 <Button className="text-sm py-2 px-4" color="purpleBorder">
                     <FaEdit />
-                    Edit
+                    {t("edit")}
                 </Button>
             </Link>
             <Button
@@ -62,7 +63,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
                 onClick={() => deleteUserHandler(user.id)}
             >
                 <FaTrashAlt />
-                Delete
+                {t("delete")}
             </Button>
         </div>,
     ]);
