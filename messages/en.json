@@ -27,6 +27,9 @@
         "slack-placeholder": "Enter Slack Token",
         "slack-instruction": "Go to https://api.slack.com/apps, select the app and generate a Token",
         "shopify-placeholder": "Enter Shopify API key",
+        "transactions-title": "Transactions",
+        "transaction-type-withdrawal": "Withdrawal",
+        "transaction-type-deposit": "Deposit",
         "prompt-history": "Prompt history"
     },
     "Home": {

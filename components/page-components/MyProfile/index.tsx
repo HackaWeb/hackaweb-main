@@ -10,6 +10,7 @@ import MyKeys from "@/components/common/MyKeys";
 import { useTranslations } from "next-intl";
 import PromptHistory from "@/components/common/PromptHistory";
 import { useMessages } from "@/hooks/useMessages";
+import Transactions from "@/components/common/Transactions";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     const t = useTranslations("Profile");
@@ -33,6 +34,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     />
                     <MyKeys />
                     <PromptHistory history={messages} />
+                    <Transactions />
                 </div>
             </div>
         </motion.div>

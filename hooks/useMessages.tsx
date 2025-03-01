@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
 import { Message } from "@/components/page-components/Chat/Chat.props";

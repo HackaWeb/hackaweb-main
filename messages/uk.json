@@ -27,7 +27,10 @@
         "slack-placeholder": "Введіть TOKEN Slack",
         "slack-instruction": "Перейдіть за посиланням https://api.slack.com/apps, оберіть додаток та згенеруйте Token",
         "shopify-placeholder": "Введіть API ключ Shopify",
-        "prompt-history": "Історія запитів"
+        "prompt-history": "Історія запитів",
+        "transactions-title": "Транзакції",
+        "transaction-type-withdrawal": "Виведення",
+        "transaction-type-deposit": "Поповнення"
     },
     "Home": {
         "ai-helper": "AI Помічник"
