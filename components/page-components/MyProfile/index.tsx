@@ -14,6 +14,7 @@ import { useMessages } from "@/hooks/useMessages";
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     const t = useTranslations("Profile");
     const { messages } = useMessages(profile);
+    console.log(messages);
 
     return (
         <motion.div

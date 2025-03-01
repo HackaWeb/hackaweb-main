@@ -15,13 +15,12 @@ const PromptHistory = ({ history }: PromptHistoryProps) => {
                 </div>
                 <Table
                     className="mt-4"
-                    headers={["id", "contents", "date"].map((item) =>
+                    headers={["contents", "date"].map((item) =>
                         headersT(item),
                     )}
                     data={history
-                        .filter((item) => item.sender === "User")
-                        .map((item, index) => [
-                            index + 1,
+                        .filter((item) => item.sender != "Bot" && item.sender != "System")
+                        .map((item) => [
                             item.message,
                             item.sentAt,
                         ])}
