@@ -22,6 +22,19 @@ export const useMessages = (profile: UserProfile) => {
         setConnection(newConnection);
     }, []);
 
+    const formatDateTime = (date: Date) => {
+        const formattedDate = date.toLocaleDateString("uk-UA", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
+        const formattedTime = date.toLocaleTimeString("uk-UA", {
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+        return `${formattedDate}, ${formattedTime}`;
+    };
+
     useEffect(() => {
         if (connection) {
             connection
@@ -40,13 +53,7 @@ export const useMessages = (profile: UserProfile) => {
                                 {
                                     sender: "Server",
                                     message: serverResponse,
-                                    sentAt: new Date().toLocaleTimeString(
-                                        "uk-UA",
-                                        {
-                                            hour: "2-digit",
-                                            minute: "2-digit",
-                                        },
-                                    ),
+                                    sentAt: formatDateTime(new Date()),
                                 },
                             ]);
                         },
@@ -57,10 +64,7 @@ export const useMessages = (profile: UserProfile) => {
                             {
                                 sender: "System",
                                 message: sysMsg,
-                                sentAt: new Date().toLocaleTimeString("uk-UA", {
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                }),
+                                sentAt: formatDateTime(new Date()),
                             },
                             ...prev,
                         ]);
@@ -85,13 +89,7 @@ export const useMessages = (profile: UserProfile) => {
                     ...history.map((msg: Message) => ({
                         sender: msg.sender,
                         message: msg.message,
-                        sentAt: new Date(msg.sentAt).toLocaleTimeString(
-                            "uk-UA",
-                            {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                            },
-                        ),
+                        sentAt: formatDateTime(new Date(msg.sentAt)),
                     })),
                     ...prev,
                 ]);
@@ -114,10 +112,7 @@ export const useMessages = (profile: UserProfile) => {
                     {
                         sender: profile.firstName || "User",
                         message: messageInput,
-                        sentAt: new Date().toLocaleTimeString("uk-UA", {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                        }),
+                        sentAt: formatDateTime(new Date()),
                     },
                 ]);
                 await connection.invoke(
