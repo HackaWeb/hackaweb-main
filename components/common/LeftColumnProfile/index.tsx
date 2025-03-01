@@ -66,8 +66,8 @@ export const LeftColumnProfile = ({
     };
 
     return (
-        <div className="max-w-[400px]">
-            <div className="p-4 bg-secondary rounded-md">
+        <div className="max-w-[500px]">
+            <div className="p-4 bg-secondary rounded-md ">
                 <div className="w-full h-auto aspect-square border border-purple rounded-md p-2 relative">
                     {isEditable && avatar && (
                         <Button
@@ -114,11 +114,6 @@ export const LeftColumnProfile = ({
                 )}
                 <div className="mt-4 text-center text-xl font-semibold text-primary">
                     {printUserNickname(profile.firstName, profile.lastName)}
-                </div>
-                <div className="flex justify-center">
-                    <div className="p-2 px-4 flex bg-secondary-light text-purple font-semibold mx-auto mt-2 w-auto rounded-md">
-                        Artist
-                    </div>
                 </div>
             </div>
         </div>

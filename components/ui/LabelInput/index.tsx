@@ -22,7 +22,7 @@ export const LabelInput = ({
                 id={id}
                 className={cn(
                     "mt-2 w-full p-3 text-base bg-secondary rounded-md py-4",
-                    disabled && "cursor-not-allowed text-gray-400",
+                    disabled && "cursor-not-allowed text-gray-dark",
                 )}
                 value={value}
                 onChange={onChange}

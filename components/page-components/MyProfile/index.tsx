@@ -29,9 +29,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             <h1 className="text-primary">{t("my-profile")}</h1>
             <ReturnBtn className="mt-4" />
             <div className="mt-8 grid grid-cols-[1fr] sm:grid-cols-[240px_auto] 2xl:grid-cols-[240px_auto] gap-6 items-start">
-                <div>
-                    <LeftColumnProfile profile={profile} isEditable={true} />
-                </div>
+                <LeftColumnProfile profile={profile} isEditable={true} />
                 <div className="overflow-hidden flex flex-col gap-6">
                     <ProfileForm
                         profile={profile}

@@ -58,7 +58,7 @@ export const Select = ({
                     <span className="text-primary">{placeholder}</span>
                 )}
                 <IoIosArrowDown
-                    className="text-gray transition-transform"
+                    className="text-primary transition-transform"
                     style={{
                         transform: isOptionsOpened
                             ? "rotate(180deg)"
