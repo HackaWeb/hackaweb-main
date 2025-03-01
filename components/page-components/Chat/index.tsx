@@ -47,7 +47,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     console.log(messages);
 
     return (
-        <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[87vh]">
+        <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[85vh]">
             <h1>{t("ai-helper")}</h1>
             <div className="flex flex-col mt-6 max-w-4xl mx-auto">
                 <motion.div
