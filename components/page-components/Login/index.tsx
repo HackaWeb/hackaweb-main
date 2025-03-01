@@ -13,10 +13,12 @@ import { cn } from "@/helpers/cn";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { GoogleAuthButton } from "@/components/common/GoogleAuthButton";
 import { useRouter } from "@/helpers/navigation";
+import { useTranslations } from "next-intl";
 
 export const LoginPageComponent = () => {
     const router = useRouter();
-
+    const t = useTranslations("Auth");
+    const t_toasts = useTranslations("Toasts");
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -24,12 +26,12 @@ export const LoginPageComponent = () => {
         e.preventDefault();
 
         if (!formData.email.trim() || !formData.password.trim()) {
-            toast.error("Заповніть усі поля");
+            toast.error(t_toasts("fill-all-fields"));
             return;
         }
 
         if (!validateEmail(formData.email)) {
-            toast.error("Ваша пошта не є поштою");
+            toast.error(t_toasts("invalid-email"));
             return;
         }
 
@@ -45,7 +47,7 @@ export const LoginPageComponent = () => {
             if (res.token) {
                 setCookie("token", res.token);
                 setCookie("refreshToken", res.refreshToken);
-                toast.success("Вас успішно авторизовано!");
+                toast.success(t_toasts("auth-success"));
                 router.refresh();
 
                 const timeout = setTimeout(() => {
@@ -64,7 +66,7 @@ export const LoginPageComponent = () => {
 
     return (
         <div className="container sm:mt-12 mt-6 flex flex-col place-items-center">
-            <h1>Авторизація</h1>
+            <h1>{t("login")}</h1>
             <form onSubmit={onSubmit} className="flex flex-col w-full">
                 <div className="space-y-4 sm:mt-10 mt-6">
                     <LabelInput
@@ -73,14 +75,14 @@ export const LoginPageComponent = () => {
                         onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                         }
-                        placeholder="Пошта..."
-                        labelTitle="Введіть пошту"
+                        placeholder={t("email-placeholder")}
+                        labelTitle={t("email-title")}
                         id="email"
                     />
                     <LabelInput
                         type="password"
                         id="password"
-                        labelTitle="Введіть пароль"
+                        labelTitle={t("password-title")}
                         value={formData.password}
                         onChange={(e) =>
                             setFormData({
@@ -88,14 +90,14 @@ export const LoginPageComponent = () => {
                                 password: e.target.value,
                             })
                         }
-                        placeholder="Пароль..."
+                        placeholder={t("password-placeholder")}
                     />
                 </div>
                 <Link
                     href="/register"
                     className="mt-2 text-purple text-start text-sm"
                 >
-                    Не маєте акаунту? Зареєструйтесь!
+                    {t("no-account")}
                 </Link>
                 <Button
                     color="purpleBackground"
@@ -108,7 +110,7 @@ export const LoginPageComponent = () => {
                     {isLoading && (
                         <ImSpinner2 className="size-6 animate-spin text-primary" />
                     )}{" "}
-                    <span>Увійти</span>
+                    <span>{t("login")}</span>
                 </Button>
             </form>
             <GoogleAuthButton />

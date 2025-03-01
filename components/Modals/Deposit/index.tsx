@@ -6,9 +6,11 @@ import { popAnimationWithTransform, TOKEN_RATE } from "@/constants";
 import { LabelInput } from "@/components/ui/LabelInput";
 import { useState } from "react";
 import PayPalButton from "@/components/common/PayPalButton";
+import { useTranslations } from "next-intl";
 
 export const Deposit = () => {
     const [amount, setAmount] = useState<number>(0);
+    const t = useTranslations("Deposit");
 
     return (
         <motion.div
@@ -17,13 +19,13 @@ export const Deposit = () => {
         >
             <ReturnBtn className="self-start mt-2 mb-10 ml-2 sm:ml-4" />
             <div className="text-xl sm:text-3xl text-center mt-5">
-                Поповнення балансу
+                {t("title")}
             </div>
             <div className="w-full p-4">
                 <LabelInput
-                    labelTitle="Сума токенів"
+                    labelTitle={t("amount")}
                     type="number"
-                    placeholder="Введіть суму"
+                    placeholder={t("amount-placeholder")}
                     id="amount"
                     value={amount.toString()}
                     onChange={(e) => setAmount(Number(e.target.value))}

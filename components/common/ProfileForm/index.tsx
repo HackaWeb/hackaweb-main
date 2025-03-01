@@ -18,6 +18,7 @@ export const ProfileForm = ({
 }: ProfileFormProps) => {
     const router = useRouter();
     const t = useTranslations("Profile");
+    const t_toasts = useTranslations("Toasts");
 
     const [userData, setUserData] = useState({
         firstName: profile.firstName || "",
@@ -28,7 +29,7 @@ export const ProfileForm = ({
         e.preventDefault();
 
         if (!userData.firstName.length && !userData.lastName.length) {
-            toast.error("Заповніть хоча б одне поле");
+            toast.error(t_toasts("fill-one-field"));
         }
 
         try {

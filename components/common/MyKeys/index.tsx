@@ -1,9 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/Button";
 import { LabelInput } from "@/components/ui/LabelInput";
 import SaveBtn from "@/components/ui/SaveBtn";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const MyKeys = () => {
     const t = useTranslations("Profile");
@@ -49,7 +48,7 @@ const MyKeys = () => {
                             }}
                         />
                     </div>
-                    <p className="text-gray mt-2 text-sm">
+                    <p className="text-primary mt-2 text-sm">
                         {t("trello-instruction")}
                     </p>
                 </div>
@@ -66,7 +65,7 @@ const MyKeys = () => {
                             });
                         }}
                     />
-                    <p className="text-gray mt-2 text-sm">
+                    <p className="text-primary mt-2 text-sm">
                         {t("slack-instruction")}
                     </p>
                 </div>

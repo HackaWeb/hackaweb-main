@@ -3,8 +3,38 @@
         "chat": "Chat",
         "profile": "My Profile"
     },
+    "Toasts": {
+        "auth-success": "You have been successfully authorized!",
+        "log-out": "You have successfully logged out!",
+        "deposit-error": "Enter deposit amount!",
+        "transaction-success": "Transaction completed successfully!",
+        "transaction-canceled": "Transaction canceled!",
+        "fill-one-field": "Fill in at least one field!",
+        "fill-all-fields": "Fill in all fields!",
+        "invalid-email": "Your email is not valid!",
+        "passwords-not-match": "Passwords do not match!"
+    },
+    "Auth": {
+        "login": "Login",
+        "register": "Register",
+        "third-party": "Or auth with social networks",
+        "email-title": "Type your email",
+        "email-placeholder": "Email..",
+        "password-title": "Type your password",
+        "password-placeholder": "Password..",
+        "strong-password-title": "Type strong password",
+        "strong-password-placeholder": "Strong password..",
+        "password-confirm-title": "Confirm password",
+        "password-confirm-placeholder": "Confirm password.."
+    },
     "Header": {
-        "log-out": "Log out"
+        "balance": "Balance",
+        "deposit": "Deposit"
+    },
+    "Deposit": {
+        "title": "Deposit",
+        "amount": "Amount of tokens",
+        "amount-placeholder": "Enter amount.."
     },
     "Buttons": {
         "go-back": "Go back",
