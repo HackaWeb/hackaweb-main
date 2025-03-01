@@ -25,11 +25,14 @@
         "strong-password-title": "Type strong password",
         "strong-password-placeholder": "Strong password..",
         "password-confirm-title": "Confirm password",
-        "password-confirm-placeholder": "Confirm password.."
+        "password-confirm-placeholder": "Confirm password..",
+        "no-account": "Don't have an account? Register!"
     },
     "Header": {
         "balance": "Balance",
-        "deposit": "Deposit"
+        "deposit": "Deposit",
+        "login": "Login",
+        "register": "Register"
     },
     "Deposit": {
         "title": "Deposit",

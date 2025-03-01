@@ -51,7 +51,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 href="/login"
                                 onClick={() => setIsAsideOpenedHandler(false)}
                             >
-                                {t("log-in")}
+                                {t("login")}
                             </Link>
                             <div className="w-[1px] h-8 bg-gray-dark"></div>
                             <Link
