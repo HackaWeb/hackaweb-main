@@ -12,10 +12,12 @@ import { useRouter } from "@/helpers/navigation";
 import { FormEvent, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 export const RegisterPageComponent = () => {
     const router = useRouter();
-
+    const t = useTranslations("Auth");
+    const t_toasts = useTranslations("Toasts");
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -31,17 +33,17 @@ export const RegisterPageComponent = () => {
             !formData.password.trim() ||
             !formData.confirmPassword.trim()
         ) {
-            toast.error("Заповніть усі поля");
+            toast.error(t_toasts("fill-all-fields"));
             return;
         }
 
         if (!validateEmail(formData.email)) {
-            toast.error("Ваша пошта не є поштою");
+            toast.error(t_toasts("invalid-email"));
             return;
         }
 
         if (formData.password !== formData.confirmPassword) {
-            toast.error("Паролі не співпадають");
+            toast.error(t_toasts("passwords-not-match"));
             return;
         }
 
@@ -55,7 +57,7 @@ export const RegisterPageComponent = () => {
             if (res.token) {
                 setCookie("token", res.token);
                 setCookie("refreshToken", res.refreshToken);
-                toast.success("Вас успішно зареєстровано!");
+                toast.success(t_toasts("auth-success"));
                 router.refresh();
 
                 const timeout = setTimeout(() => {
@@ -75,16 +77,16 @@ export const RegisterPageComponent = () => {
 
     return (
         <div className="container sm:mt-12 mt-6 flex flex-col place-items-center">
-            <h1>Реєстрація</h1>
+            <h1>{t("register")}</h1>
             <form
                 onSubmit={onSubmit}
                 className="flex flex-col place-items-center"
             >
                 <div className="space-y-4 sm:mt-10 mt-6">
                     <LabelInput
-                        labelTitle="Введіть пошту"
+                        labelTitle={t("email-title")}
                         id="email"
-                        placeholder="Пошта..."
+                        placeholder={t("email-placeholder")}
                         type="email"
                         value={formData.email}
                         onChange={(e) =>
@@ -92,8 +94,8 @@ export const RegisterPageComponent = () => {
                         }
                     />
                     <LabelInput
-                        labelTitle="Придумайте надійний пароль..."
-                        placeholder="Надійний пароль"
+                        labelTitle={t("strong-password-title")}
+                        placeholder={t("strong-password-placeholder")}
                         id="password"
                         type="password"
                         value={formData.password}
@@ -105,8 +107,8 @@ export const RegisterPageComponent = () => {
                         }
                     />
                     <LabelInput
-                        labelTitle="Підтвердіть пароль..."
-                        placeholder="Підтвердіть пароль"
+                        labelTitle={t("password-confirm-title")}
+                        placeholder={t("password-confirm-placeholder")}
                         id="new-password"
                         type="password"
                         value={formData.confirmPassword}
@@ -130,7 +132,7 @@ export const RegisterPageComponent = () => {
                     {isLoading && (
                         <ImSpinner2 className="size-6 animate-spin text-primary" />
                     )}{" "}
-                    <span>Реєстрація</span>
+                    <span>{t("register")}</span>
                 </Button>
             </form>
             <GoogleAuthButton />

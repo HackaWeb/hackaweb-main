@@ -5,9 +5,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { closeModal } from "@/store/slices/openedModal";
+import { useTranslations } from "next-intl";
 
 const PayPalButton = ({ amount }: PayPalButtonProps) => {
     const router = useRouter();
+    const t_toasts = useTranslations("Toasts");
+
     const dispatch = useAppDispatch();
 
     const closeModalHandler = () => {
@@ -15,7 +18,7 @@ const PayPalButton = ({ amount }: PayPalButtonProps) => {
     };
 
     const createOrder = async () => {
-        if (!Number(amount)) return toast.error("Введіть суму поповнення!");
+        if (!Number(amount)) return toast.error(t_toasts("deposit-error"));
 
         const response = await fetch("/api/deposit", {
             method: "POST",
@@ -38,13 +41,13 @@ const PayPalButton = ({ amount }: PayPalButtonProps) => {
                     createOrder={async () => await createOrder()}
                     onApprove={async (data, actions) => {
                         const order = await actions.order?.capture();
-                        toast.success(`Транзакція проведена успішно!`);
+                        toast.success(t_toasts("transaction-success"));
                         router.refresh();
                         closeModalHandler();
                     }}
                     onCancel={() => {
                         router.push("/");
-                        toast.error("Транзакція скасована!");
+                        toast.error(t_toasts("transaction-canceled"));
                     }}
                 />
             </div>

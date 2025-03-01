@@ -1,15 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Select } from "@/components/ui/Select";
 import { Table } from "@/components/ui/Table";
-import { UserProfile } from "@/types/user.interface";
-import Image from "next/image";
 import { Link, useRouter } from "@/helpers/navigation";
-import { AiOutlineUser } from "react-icons/ai";
-import { FaEdit, FaTrashAlt, FaPlus, FaCoins } from "react-icons/fa";
-import { useRedirect } from "@/hooks/useRedirect";
+import { FaEdit, FaTrashAlt, FaCoins } from "react-icons/fa";
 import { UsersProps } from "./Users.props";
 import { deleteUser } from "@/apis/users";
 import { toast } from "react-toastify";

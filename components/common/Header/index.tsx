@@ -22,14 +22,14 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const t = useTranslations("Header");
-
+    const t_toasts = useTranslations("Toasts");
     const setIsAsideOpenedHandler = (value: boolean) => {
         dispatch(setIsAsideOpened(value));
     };
 
     const onLogoutClick = () => {
         setCookie("token", "");
-        toast.success("Ви успішно вийшли з акаунту!");
+        toast.success(t_toasts("log-out"));
         router.refresh();
     };
 
@@ -51,14 +51,14 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 href="/login"
                                 onClick={() => setIsAsideOpenedHandler(false)}
                             >
-                                Увійти
+                                {t("log-in")}
                             </Link>
                             <div className="w-[1px] h-8 bg-gray-dark"></div>
                             <Link
                                 href="/register"
                                 onClick={() => setIsAsideOpenedHandler(false)}
                             >
-                                Реєстрація
+                                {t("register")}
                             </Link>
                         </div>
                     </div>
@@ -90,10 +90,14 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="flex items-center gap-2 bg-secondary-light px-4 py-3 rounded-md text-primary font-semibold">
-                                <div className="text-gray-dark">Баланс:</div>
+                                <div className="text-gray-dark">
+                                    {t("balance")}:
+                                </div>
                                 <div className="flex items-center gap-1">
                                     <RiCoinFill className="text-yellow-light" />
-                                    <span className="text-yellow">{5}</span>
+                                    <span className="text-yellow-light">
+                                        {5}
+                                    </span>
                                 </div>
                             </div>
                             <Button
@@ -103,7 +107,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 }
                                 className="p-3 text-sm text-yellow"
                             >
-                                <span>Поповнити баланс</span>
+                                <span>{t("deposit")}</span>
                                 <FaRegPlusSquare />
                             </Button>
                         </div>

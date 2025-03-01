@@ -3,8 +3,42 @@
         "chat": "Чат",
         "profile": "Мій кабінет"
     },
+    "Toasts": {
+        "auth-success": "Вас успішно авторизовано!",
+        "log-out": "Ви успішно вийшли з аккаунту!",
+        "deposit-error": "Введіть суму поповнення!",
+        "transaction-success": "Транзакція успішно проведена!",
+        "transaction-canceled": "Транзакція скасована!",
+        "fill-one-field": "Заповніть хоча б одне поле!",
+        "fill-all-fields": "Заповніть усі поля!",
+        "invalid-email": "Ваша пошта не є поштою!",
+        "passwords-not-match": "Паролі не співпадають!"
+    },
+    "Auth": {
+        "login": "Увійти",
+        "register": "Зареєструватися",
+        "third-party": "Або авторизуватися через соц. мережі",
+        "email-title": "Введіть пошту",
+        "email-placeholder": "Пошта..",
+        "password-title": "Введіть пароль",
+        "password-placeholder": "Пароль..",
+        "strong-password-title": "Придумайте надійний пароль",
+        "strong-password-placeholder": "Надійний пароль..",
+        "password-confirm-title": "Підтвердіть пароль",
+        "password-confirm-placeholder": "Підтвердіть пароль..",
+        "no-account": "Не маєте акаунту? Зареєструйтесь!"
+    },
     "Header": {
-        "log-out": "Вийти"
+        "log-out": "Вийти",
+        "balance": "Баланс",
+        "deposit": "Поповнити баланс",
+        "log-in": "Увійти",
+        "register": "Зареєструватися"
+    },
+    "Deposit": {
+        "title": "Поповнення балансу",
+        "amount": "Сума токенів",
+        "amount-placeholder": "Введіть суму.."
     },
     "Buttons": {
         "go-back": "Повернутися назад",
