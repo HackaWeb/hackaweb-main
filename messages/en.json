@@ -51,8 +51,10 @@
         "your-email": "Your email",
         "user-email": "User email",
         "your-name": "Your name",
+        "your-name-placeholder": "Type name..",
         "user-name": "User first name",
         "your-surname": "Your surname",
+        "your-surname-placeholder": "Type surname..",
         "user-surname": "User surname",
         "your-keys": "Your API Keys",
         "update-success": "Profile updated successfully",
@@ -95,7 +97,16 @@
         "status-pending": "Pending",
         "status-completed": "Completed",
         "id": "ID",
-        "user": "User"
+        "user": "User",
+        "first-name": "First Name",
+        "last-name": "Last Name",
+        "email": "Email",
+        "registration-date": "Registration Date",
+        "balance": "Balance",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "users-list": "Users List"
     },
     "Table": {
         "no-data": "No data"

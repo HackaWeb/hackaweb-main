@@ -7,7 +7,6 @@ import { printUserNickname } from "@/helpers/printUserNickname";
 import { UserProfileProps } from "./UserProfile.props";
 import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
-import { Table } from "@/components/ui/Table";
 import { useTranslations } from "next-intl";
 import PromptHistory from "@/components/common/PromptHistory";
 import { useMessages } from "@/hooks/useMessages";

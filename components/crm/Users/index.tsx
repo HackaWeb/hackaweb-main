@@ -8,17 +8,20 @@ import { UsersProps } from "./Users.props";
 import { deleteUser } from "@/apis/users";
 import { toast } from "react-toastify";
 import { formatDateTime } from "@/helpers/formatDate";
+import { useTranslations } from "next-intl";
 
 export const UsersPageComponent = ({ users }: UsersProps) => {
     const router = useRouter();
+    const t = useTranslations("CRM");
+
     const headers = [
-        "ID",
-        "First Name",
-        "Last Name",
-        "Email",
-        "Registration Date",
-        "Balance",
-        "Actions",
+        t("id"),
+        t("first-name"),
+        t("last-name"),
+        t("email"),
+        t("registration-date"),
+        t("balance"),
+        t("actions"),
     ];
 
     const deleteUserHandler = async (userId: string) => {
@@ -50,7 +53,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
             <Link href={`/crm/users/${user.id}`} key={user.id}>
                 <Button className="text-sm py-2 px-4" color="purpleBorder">
                     <FaEdit />
-                    Edit
+                    {t("edit")}
                 </Button>
             </Link>
             <Button
@@ -59,14 +62,16 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
                 onClick={() => deleteUserHandler(user.id)}
             >
                 <FaTrashAlt />
-                Delete
+                {t("delete")}
             </Button>
         </div>,
     ]);
 
     return (
         <div className="grid bg-secondary-light p-6 rounded-md">
-            <h1 className="text-2xl font-bold mb-4 text-primary">Users List</h1>
+            <h1 className="text-2xl font-bold mb-4 text-primary">
+                {t("users-list")}
+            </h1>
             <Table headers={headers} data={data} className="mt-4" />
         </div>
     );
