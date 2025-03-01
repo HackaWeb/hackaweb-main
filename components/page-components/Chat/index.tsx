@@ -44,6 +44,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
         }
         console.log(messages);
     }, [messages]);
+    console.log(messages);
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[87vh]">
@@ -71,40 +72,19 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                               : "bg-secondary-light"
                                       }`}
                                   >
-                                      <div className="text-primary font-bold text-sm">
-                                          {msg.sender}:
+                                      <div className="flex text-gray text-sm gap-1">
+                                          <div className="text-gray font-bold">
+                                              {msg.sender}:
+                                          </div>
+                                          <div className="text-gray">
+                                              {msg.sentAt}
+                                          </div>
                                       </div>
                                       <div className="text-primary mt-1 break-words">
                                           {msg.message}
                                       </div>
-                                      <div className="text-primary mt-1 break-words text-xs font-semibold text-right">
-                                          {msg.sentAt}
-                                      </div>
                                   </motion.div>
                               ))}
-                        {messages.map((msg, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className={`p-3 rounded-lg max-w-xl ${
-                                    msg.sender === profile.firstName ||
-                                    msg.sender === "User"
-                                        ? "bg-secondary-dark ml-auto text-right"
-                                        : "bg-secondary-light"
-                                }`}
-                            >
-                                <div className="text-primary font-bold text-sm">
-                                    {msg.sender}:
-                                </div>
-                                <div className="text-primary mt-1 break-words">
-                                    {msg.message}
-                                </div>
-                                <div className="text-primary mt-1 break-words text-xs font-semibold text-right">
-                                    {msg.sentAt}
-                                </div>
-                            </motion.div>
-                        ))}
                     </div>
                     <div ref={messagesEndRef} />
                 </motion.div>
