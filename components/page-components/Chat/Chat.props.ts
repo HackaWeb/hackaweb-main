@@ -13,6 +13,5 @@ export interface Chat {
 }
 
 export interface ChatProps {
-    chats: Chat[];
     profile: UserProfile;
 }
