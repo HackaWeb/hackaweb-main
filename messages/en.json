@@ -21,11 +21,13 @@
         "user-surname": "User surname",
         "your-keys": "Your API Keys",
         "update-success": "Profile updated successfully",
-        "change-avatar": "Change avatar",
         "trello-placeholder": "Enter Trello API key",
         "jira-placeholder": "Enter Jira API key",
         "shopify-placeholder": "Enter Shopify API key",
         "prompt-history": "Prompt history"
+    },
+    "Home": {
+        "ai-helper": "AI Helper"
     },
     "PromptTable": {
         "id": "ID",

@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { ChatProps } from "./Chat.props";
 import { Skeleton } from "./Skeleton";
+import { useTranslations } from "next-intl";
 import { useMessages } from "@/hooks/useMessages";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
@@ -22,6 +23,8 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     } = useMessages(profile);
 
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+    const t = useTranslations("Home");
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -44,7 +47,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[87vh]">
-            <h1>AI помічник</h1>
+            <h1>{t("ai-helper")}</h1>
             <div className="flex flex-col mt-6 max-w-4xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}

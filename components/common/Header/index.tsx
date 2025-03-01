@@ -10,7 +10,6 @@ import { printUserNickname } from "@/helpers/printUserNickname";
 import { setCookie } from "@/helpers/setCookie";
 import { toast } from "react-toastify";
 import { Language } from "./Language";
-import { Messages } from "./Messages";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { Link, useRouter } from "@/helpers/navigation";
 import { useTranslations } from "next-intl";
@@ -63,22 +62,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                     <div className="flex items-center gap-4">
                         <div className="flex bg-secondary p-2 relative w-auto rounded-md">
                             <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
-                                {!profile.avatarUrl ? (
-                                    <AiOutlineUser className="text-purple size-6" />
-                                ) : (
-                                    <Image
-                                        src={profile.avatarUrl}
-                                        alt={
-                                            (profile.firstName || "") +
-                                            " " +
-                                            (profile.lastName || "")
-                                        }
-                                        width={0}
-                                        height={0}
-                                        sizes="100vw"
-                                        className="w-full h-full object-cover"
-                                    />
-                                )}
+                                <AiOutlineUser className="text-purple size-6" />
                             </div>
                             <div className="mx-4">
                                 <Link
@@ -99,7 +83,6 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 </button>
                             </div>
                         </div>
-                        <Messages />
                     </div>
                 )}
             </div>

@@ -10,9 +10,9 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { AsideProps } from "./Aside.props";
 import { usePathname } from "@/helpers/navigation";
 import { Link } from "@/helpers/navigation";
-import { IoLogoSnapchat } from "react-icons/io";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import { useTranslations } from "next-intl";
+import { FaRobot } from "react-icons/fa";
 
 export const Aside = ({ profile }: AsideProps) => {
     const t = useTranslations("Aside");
@@ -71,7 +71,7 @@ export const Aside = ({ profile }: AsideProps) => {
                         className="text-primary text-2xl flex items-center gap-2 text-white"
                         onClick={() => setActiveLink("Усі квести")}
                     >
-                        <IoLogoSnapchat className="size-12" />
+                        <FaRobot className="size-12" />
                         <span>HackaChat</span>
                     </Link>
 

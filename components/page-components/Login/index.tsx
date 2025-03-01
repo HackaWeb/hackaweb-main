@@ -4,7 +4,7 @@ import { login } from "@/apis/auth";
 import { Button } from "@/components/ui/Button";
 import { LabelInput } from "@/components/ui/LabelInput";
 import { setCookie } from "@/helpers/setCookie";
-import Link from "next/link";
+import { Link } from "@/helpers/navigation";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { ImSpinner2 } from "react-icons/im";
