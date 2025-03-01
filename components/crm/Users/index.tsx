@@ -32,24 +32,7 @@ export const UsersPageComponent = ({ users }: { users: any[] }) => {
             className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center"
             key={user.id}
         >
-            {!user.avatarUrl ? (
-                <AiOutlineUser className="text-purple size-6" />
-            ) : (
-                <img
-                    src={user.avatarUrl}
-                    key={user.id}
-                    alt="User"
-                    className="w-full h-full object-cover"
-                />
-                /* <Image
-                    src={user.avatarUrl}
-                    alt={(user.firstName || "") + " " + (user.lastName || "")}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className="w-full h-full object-cover"
-                /> */
-            )}
+            <AiOutlineUser className="text-purple size-6" />
         </div>,
         user.name,
         user.email,
