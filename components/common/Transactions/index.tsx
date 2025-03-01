@@ -46,7 +46,13 @@ const Transactions = ({ transactions }: TransactionsProps) => {
         },
     );
 
-    const headers = ["ID", "Тип", "Сума", "Залишок", "Дата"];
+    const headers = [
+        "ID",
+        t("transaction-type"),
+        t("transaction-summ"),
+        t("transaction-balance"),
+        t("transaction-date"),
+    ];
 
     return (
         <div>

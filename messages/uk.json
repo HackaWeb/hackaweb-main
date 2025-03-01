@@ -30,7 +30,11 @@
         "prompt-history": "Історія запитів",
         "transactions-title": "Транзакції",
         "transaction-type-withdrawal": "Виведення",
-        "transaction-type-deposit": "Поповнення"
+        "transaction-type-deposit": "Поповнення",
+        "transaction-type": "Тип",
+        "transaction-summ": "Сума",
+        "transaction-balance": "Баланс",
+        "transaction-date": "Дата"
     },
     "Home": {
         "ai-helper": "AI Помічник"

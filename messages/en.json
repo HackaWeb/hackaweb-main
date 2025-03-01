@@ -30,7 +30,11 @@
         "transactions-title": "Transactions",
         "transaction-type-withdrawal": "Withdrawal",
         "transaction-type-deposit": "Deposit",
-        "prompt-history": "Prompt history"
+        "prompt-history": "Prompt history",
+        "transaction-type": "Type",
+        "transaction-summ": "Summ",
+        "transaction-balance": "Balance",
+        "transaction-date": "Date"
     },
     "Home": {
         "ai-helper": "AI Helper"
