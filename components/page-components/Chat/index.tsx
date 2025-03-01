@@ -79,7 +79,6 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
             setIsSending(true);
             setMessageInput("");
             try {
-                await connection.invoke("SendMessage", messageInput);
                 setMessages((prev) => [
                     ...prev,
                     {
@@ -88,6 +87,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                         sentAt: new Date().toLocaleString("uk-UA"),
                     },
                 ]);
+                await connection.invoke("SendMessage", messageInput);
             } catch (error) {
                 console.error("Помилка при надсиланні повідомлення: ", error);
             } finally {
