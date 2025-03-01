@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { useAppSelector } from "@/store/hooks/useAppSelector";
 import { Modal } from "@/types/modal.enum";
 import { CreateSmth } from "./CreateSmth";
+import { Deposit } from "./Deposit";
 
 export const Modals = () => {
     const dispatch = useAppDispatch();
@@ -22,6 +23,8 @@ export const Modals = () => {
         switch (modal) {
             case Modal.CreateSmth:
                 return <CreateSmth />;
+            case Modal.Deposit:
+                return <Deposit />;
             default:
                 return null;
         }

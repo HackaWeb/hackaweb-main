@@ -30,6 +30,7 @@
         "toast": "^0.5.4"
     },
     "devDependencies": {
+        "@paypal/react-paypal-js": "^8.8.2",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
