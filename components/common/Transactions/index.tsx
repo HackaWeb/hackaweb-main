@@ -2,6 +2,7 @@ import { Table } from "@/components/ui/Table";
 import React from "react";
 import { TransactionsProps } from "./transactions.props";
 import { useTranslations } from "next-intl";
+import { RiCoinFill } from "react-icons/ri";
 
 const Transactions = ({ transactions }: TransactionsProps) => {
     const t = useTranslations("Profile");
@@ -11,10 +12,27 @@ const Transactions = ({ transactions }: TransactionsProps) => {
         (_, index) => {
             const type = index % 2 === 0 ? "withdrawal" : "deposit";
             const amount =
-                type === "withdrawal"
-                    ? Math.floor(Math.random() * 1000) + 100
-                    : Math.floor(Math.random() * 1000) + 500;
-            const balance = 5000 + index * 100;
+                type === "withdrawal" ? (
+                    <div className="flex items-center gap-1">
+                        <RiCoinFill className="text-red" />
+                        <div className="text-red font-semibold">
+                            -{Math.floor(Math.random() * 1000) + 500}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="flex items-center gap-1">
+                        <RiCoinFill className="text-purple" />
+                        <div className="text-purple font-semibold">
+                            +{Math.floor(Math.random() * 1000) + 500}
+                        </div>
+                    </div>
+                );
+            const balance = (
+                <div className="flex items-center gap-1 text-yellow font-semibold">
+                    <RiCoinFill className="size-4" />
+                    {Math.floor(Math.random() * 10000) + 5000}
+                </div>
+            );
             const date = `2025-03-${(index % 30) + 1}`;
             return [
                 index + 1,
