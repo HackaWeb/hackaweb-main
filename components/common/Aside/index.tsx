@@ -68,8 +68,7 @@ export const Aside = ({ profile }: AsideProps) => {
                 <div className="xsm:mt-6 mt-4">
                     <Link
                         href="/"
-                        className="text-primary text-2xl flex items-center gap-2 text-white"
-                        onClick={() => setActiveLink("Усі квести")}
+                        className="text-2xl flex items-center gap-2 text-purple"
                     >
                         <FaRobot className="size-12" />
                         <span>HackaChat</span>

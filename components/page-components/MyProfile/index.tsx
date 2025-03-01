@@ -15,7 +15,6 @@ import Transactions from "@/components/common/Transactions";
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     const t = useTranslations("Profile");
     const { messages } = useMessages(profile);
-    console.log(messages);
 
     return (
         <motion.div

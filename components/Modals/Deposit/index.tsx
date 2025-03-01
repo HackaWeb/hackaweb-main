@@ -30,7 +30,7 @@ export const Deposit = () => {
                 />
                 {amount > 0 && (
                     <span className="text-sm text-gray-dark">
-                        ≈ {(amount * TOKEN_RATE).toFixed(2)} $
+                        = {(amount * TOKEN_RATE).toFixed(2)} $
                     </span>
                 )}
                 <PayPalButton amount={(amount * TOKEN_RATE).toFixed(2)} />
