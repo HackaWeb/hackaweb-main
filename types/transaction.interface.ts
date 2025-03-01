@@ -1,12 +1,10 @@
-export enum TransactionResult {
-    LESS,
-    MORE,
-}
+import { UserProfile } from "./user.interface";
 
 export interface Transaction {
-    type: TransactionResult;
+    type: "deposit" | "withdraw";
     amount: number;
     doneAt: string;
     remainder: number;
     id: string;
+    user: UserProfile;
 }

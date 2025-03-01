@@ -47,5 +47,19 @@
         "id": "ID",
         "contents": "Тема запиту",
         "date": "Дата"
+    },
+    "CRM": {
+        "crm-transactions-title": "CRM Транзакції",
+        "transaction-type-withdrawal": "Виведення",
+        "transaction-type-deposit": "Поповнення",
+        "transaction-type": "Тип",
+        "transaction-summ": "Сума",
+        "transaction-balance": "Баланс",
+        "transaction-date": "Дата",
+        "transaction-status": "Статус",
+        "status-pending": "Очікується",
+        "status-completed": "Завершено",
+        "id": "ID",
+        "user": "Користувач"
     }
 }

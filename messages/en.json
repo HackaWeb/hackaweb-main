@@ -47,5 +47,19 @@
         "id": "ID",
         "contents": "Prompt contents",
         "date": "Date"
+    },
+    "CRM": {
+        "crm-transactions-title": "CRM Transactions",
+        "transaction-type-withdrawal": "Withdrawal",
+        "transaction-type-deposit": "Deposit",
+        "transaction-type": "Type",
+        "transaction-summ": "Amount",
+        "transaction-balance": "Balance",
+        "transaction-date": "Date",
+        "transaction-status": "Status",
+        "status-pending": "Pending",
+        "status-completed": "Completed",
+        "id": "ID",
+        "user": "User"
     }
 }
