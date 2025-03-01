@@ -13,7 +13,7 @@ export const Deposit = () => {
     return (
         <motion.div
             {...popAnimationWithTransform}
-            className="max-h-[40vh] pt-4 fixed left-[50%] -translate-x-1/2 md:max-w-[700px] w-[95%] md:w-full md:top-10 top-4 z-10 bg-modalBg sm:p-6 flex flex-col rounded-lg bottom-4 text-primary"
+            className="max-h-[55vh] sm:max-h-[60vh] 2xl:max-h-[50vh] pt-4 fixed left-[50%] -translate-x-1/2 md:max-w-[700px] w-[95%] md:w-full md:top-10 top-4 z-10 bg-modalBg sm:p-6 flex flex-col rounded-lg bottom-4 text-primary"
         >
             <ReturnBtn className="self-start mt-2 mb-10 ml-2 sm:ml-4" />
             <div className="text-xl sm:text-3xl text-center mt-5">
