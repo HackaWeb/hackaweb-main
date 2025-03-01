@@ -26,6 +26,9 @@
         "shopify-placeholder": "Enter Shopify API key",
         "prompt-history": "Prompt history"
     },
+    "Home": {
+        "ai-helper": "AI Helper"
+    },
     "PromptTable": {
         "id": "ID",
         "contents": "Prompt contents",

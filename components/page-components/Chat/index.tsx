@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { ChatProps } from "./Chat.props";
 import { Skeleton } from "./Skeleton";
+import { useTranslations } from "next-intl";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
     const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -21,6 +22,8 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     const [isSending, setIsSending] = useState(false);
     const [loading, setLoading] = useState(true);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+    const t = useTranslations("Home");
 
     useEffect(() => {
         const hubUrl = process.env.NEXT_PUBLIC_CHAT_HUB_URL as string;
@@ -130,7 +133,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[87vh]">
-            <h1>AI помічник</h1>
+            <h1>{t("ai-helper")}</h1>
             <div className="flex flex-col mt-6 max-w-4xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}

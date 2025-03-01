@@ -10,7 +10,6 @@ import { printUserNickname } from "@/helpers/printUserNickname";
 import { setCookie } from "@/helpers/setCookie";
 import { toast } from "react-toastify";
 import { Language } from "./Language";
-import { Messages } from "./Messages";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { Link, useRouter } from "@/helpers/navigation";
 import { useTranslations } from "next-intl";
@@ -84,7 +83,6 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 </button>
                             </div>
                         </div>
-                        <Messages />
                     </div>
                 )}
             </div>

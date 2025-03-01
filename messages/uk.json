@@ -26,6 +26,9 @@
         "shopify-placeholder": "Введіть API ключ Shopify",
         "prompt-history": "Історія запитів"
     },
+    "Home": {
+        "ai-helper": "AI Помічник"
+    },
     "PromptTable": {
         "id": "ID",
         "contents": "Тема запиту",
