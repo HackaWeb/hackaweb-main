@@ -34,7 +34,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     };
 
     return (
-        <header className="max-sm:py-4 px-4 sm:p-6  lg:px-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
+        <header className="max-sm:py-4 px-4 sm:p-6 lg:px-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
             <div className="flex items-center gap-4">
                 <Language defaultLocale={defaultLocale} />
                 <ThemeSwitch theme={theme} />
@@ -63,7 +63,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                         </div>
                     </div>
                 ) : (
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
                         <div className="flex bg-secondary p-2 relative w-auto rounded-md">
                             <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
                                 <AiOutlineUser className="text-purple size-6" />
@@ -88,23 +88,25 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex items-center gap-2 bg-secondary-light px-4 py-3 rounded-md text-primary font-semibold">
-                            <div className="text-gray-dark">Баланс:</div>
-                            <div className="flex items-center gap-1">
-                                <RiCoinFill className="text-yellow-light" />
-                                <span className="text-yellow">{5}</span>
+                        <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 bg-secondary-light px-4 py-3 rounded-md text-primary font-semibold">
+                                <div className="text-gray-dark">Баланс:</div>
+                                <div className="flex items-center gap-1">
+                                    <RiCoinFill className="text-yellow-light" />
+                                    <span className="text-yellow">{5}</span>
+                                </div>
                             </div>
+                            <Button
+                                color="yellowBorder"
+                                onClick={() =>
+                                    dispatch(setOpenedModal(Modal.Deposit))
+                                }
+                                className="p-3 text-sm text-yellow"
+                            >
+                                <span>Поповнити баланс</span>
+                                <FaRegPlusSquare />
+                            </Button>
                         </div>
-                        <Button
-                            color="yellowBorder"
-                            onClick={() =>
-                                dispatch(setOpenedModal(Modal.Deposit))
-                            }
-                            className="p-3 text-sm text-yellow"
-                        >
-                            <span>Поповнити баланс</span>
-                            <FaRegPlusSquare />
-                        </Button>
                     </div>
                 )}
             </div>
