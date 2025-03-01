@@ -70,11 +70,19 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                               : "bg-secondary-light"
                                       }`}
                                   >
-                                      <div className="flex text-primary text-sm gap-1">
-                                          <div className="text-primary font-bold">
+                                      <div
+                                          className={`flex text-gray text-sm gap-1 ${
+                                              msg.sender ===
+                                                  profile.firstName ||
+                                              msg.sender === "User"
+                                                  ? "justify-end"
+                                                  : "justify-start"
+                                          }`}
+                                      >
+                                          <div className="font-bold">
                                               {msg.sender}:
                                           </div>
-                                          <div className="text-primary">
+                                          <div>
                                               {msg.sentAt}
                                           </div>
                                       </div>

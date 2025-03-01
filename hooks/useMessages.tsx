@@ -117,11 +117,12 @@ export const useMessages = (profile: UserProfile) => {
                         sentAt: formatDateTime(new Date()),
                     },
                 ]);
-                await connection.invoke(
+                const res = await connection.invoke(
                     "SendMessage",
                     profile.id,
                     messageInput,
                 );
+                console.log(res);
             } catch (error) {
                 console.error("Помилка при надсиланні повідомлення: ", error);
             } finally {
