@@ -98,7 +98,7 @@ export const ProfileForm = ({
                         color="purpleBackground"
                         className="mt-6 mx-auto mb-2"
                     >
-                        Зберегти зміни
+                        Зберегти
                     </Button>
                 )}
             </form>
