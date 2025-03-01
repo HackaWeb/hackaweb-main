@@ -7,79 +7,16 @@ import { slideFromBottomAnimation } from "@/constants";
 import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
 import { Table } from "@/components/ui/Table";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { Input } from "@/components/ui/Input";
-import { Select } from "@/components/ui/Select";
-import { Button } from "@/components/ui/Button";
+import MyKeys from "@/components/common/MyKeys";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
-    const headers = ["ID", "Name", "Email", "Role", "Actions"];
+    const headers = ["ID", "Вміст запиту", "Дата"];
 
     const data = [
-        [
-            1,
-            "John Doe",
-            "john.doe@example.com",
-            "Admin",
-            <div className="flex gap-2">
-                <Button color="purpleBorder" className="px-4 py-2">
-                    <FaEdit />
-                    Edit
-                </Button>
-                <Button color="redBorder" className="px-4 py-2">
-                    <FaTrashAlt />
-                    Delete
-                </Button>
-            </div>,
-        ],
-        [
-            2,
-            "Jane Smith",
-            "jane.smith@example.com",
-            "User",
-            <div className="flex gap-2">
-                <Button color="purpleBorder" className="px-4 py-2">
-                    <FaEdit />
-                    Edit
-                </Button>
-                <Button color="redBorder" className="px-4 py-2">
-                    <FaTrashAlt />
-                    Delete
-                </Button>
-            </div>,
-        ],
-        [
-            3,
-            "Mark Johnson",
-            "mark.johnson@example.com",
-            "Moderator",
-            <div className="flex gap-2">
-                <Button color="purpleBorder" className="px-4 py-2">
-                    <FaEdit />
-                    Edit
-                </Button>
-                <Button color="redBorder" className="px-4 py-2">
-                    <FaTrashAlt />
-                    Delete
-                </Button>
-            </div>,
-        ],
-        [
-            4,
-            "Emily Davis",
-            "emily.davis@example.com",
-            "User",
-            <div className="flex gap-2">
-                <Button color="purpleBorder" className="px-4 py-2">
-                    <FaEdit />
-                    Edit
-                </Button>
-                <Button color="redBorder" className="px-4 py-2">
-                    <FaTrashAlt />
-                    Delete
-                </Button>
-            </div>,
-        ],
+        [1, "Створи таску в Трелло", "2024-02-15"],
+        [3, "Створи опис для нового курсу по програмуванню", "2024-02-12"],
+        [2, "Привіт gpt", "2024-02-14"],
+        [4, "Що таке AI?", "2024-02-13"],
     ];
 
     return (
@@ -93,51 +30,17 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                 <div>
                     <LeftColumnProfile profile={profile} isEditable={true} />
                 </div>
-                <div className="overflow-hidden">
+                <div className="overflow-hidden flex flex-col gap-6">
                     <ProfileForm
                         profile={profile}
                         isEditable={true}
                         isSelfProfile={true}
                     />
+                    <MyKeys />
                     <div>
-                        <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
+                        <div className="bg-secondary-light p-4 rounded-md overflow-hidden">
                             <div className="text-primary font-semibold text-lg">
-                                Table Title
-                            </div>
-                            <Table
-                                className="mt-4"
-                                headers={headers}
-                                data={data}
-                            />
-                        </div>
-                        <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
-                            <div className="flex justify-between">
-                                <Input
-                                    placeholder="Search data..."
-                                    className="max-w-60"
-                                />
-                                <div className="flex items-center gap-4">
-                                    <div className="w-40">
-                                        <Select
-                                            options={[
-                                                { value: "1", title: "ID" },
-                                                { value: "2", title: "Name" },
-                                                { value: "3", title: "Email" },
-                                                { value: "4", title: "Role" },
-                                            ]}
-                                            placeholder="Sort by"
-                                            activeOption={null}
-                                            setActiveOption={() => {}}
-                                            id="sort-by"
-                                        />
-                                    </div>
-                                    <Button
-                                        className=""
-                                        color="purpleBackground"
-                                    >
-                                        New Data
-                                    </Button>
-                                </div>
+                                Історія запитів
                             </div>
                             <Table
                                 className="mt-4"
