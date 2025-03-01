@@ -29,7 +29,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     };
 
     return (
-        <header className="p-4 sm:p-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
+        <header className="max-sm:py-4 px-4 sm:p-6 sm:px-20 lg:px-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
             <div className="flex items-center gap-4">
                 <Language defaultLocale={defaultLocale} />
                 <ThemeSwitch theme={theme} />
@@ -79,7 +79,10 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 )}
                             </div>
                             <div className="mx-4">
-                                <Link href="/profile" className="text-white">
+                                <Link
+                                    href="/profile"
+                                    className="text-primary font-semibold"
+                                >
                                     {printUserNickname(
                                         profile.firstName,
                                         profile.lastName,
@@ -87,7 +90,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 </Link>
                                 <button
                                     onClick={onLogoutClick}
-                                    className="text-gray-dark flex items-center gap-1 text-sm mt-1"
+                                    className=" flex items-center gap-1 text-sm mt-1 text-red-light transition-colors hover:text-red-dark"
                                 >
                                     <RiLogoutBoxLine />
                                     <span>Log out</span>

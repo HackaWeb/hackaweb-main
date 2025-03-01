@@ -19,9 +19,9 @@ const MyKeys = () => {
     }, [keys]);
 
     return (
-        <div className="text-primary container bg-secondary-light p-6 rounded-md">
+        <div className="w-full text-primary bg-secondary-light p-6 rounded-md mx-auto">
             <span className="font-semibold text-lg">Ваші API_KEYS</span>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="mt-8 grid grid-cols-1 gap-4">
                 <LabelInput
                     labelTitle="Trello"
                     value={keys.trello}
