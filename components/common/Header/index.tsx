@@ -4,7 +4,7 @@ import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { setIsAsideOpened } from "@/store/slices/aside";
 import { AiOutlineUser } from "react-icons/ai";
 import { HeaderProps } from "./Header.props";
-import { RiCopperCoinLine, RiLogoutBoxLine } from "react-icons/ri";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { printUserNickname } from "@/helpers/printUserNickname";
 import { setCookie } from "@/helpers/setCookie";
 import { toast } from "react-toastify";
@@ -16,6 +16,7 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/types/modal.enum";
 import { setOpenedModal } from "@/store/slices/openedModal";
+import { RiCoinFill } from "react-icons/ri";
 
 export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     const dispatch = useAppDispatch();
@@ -63,16 +64,6 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                     </div>
                 ) : (
                     <div className="flex items-center gap-4">
-                        <Button
-                            color="purpleBackground"
-                            onClick={() =>
-                                dispatch(setOpenedModal(Modal.Deposit))
-                            }
-                        >
-                            <span>Поповнити баланс</span>
-                            <FaRegPlusSquare />
-                        </Button>
-
                         <div className="flex bg-secondary p-2 relative w-auto rounded-md">
                             <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
                                 <AiOutlineUser className="text-purple size-6" />
@@ -88,25 +79,32 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                     )}
                                 </Link>
 
-                                <div className="flex items-center gap-2 text-primary font-semibold">
-                                    <div className="text-gray-dark">
-                                        Баланс:
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        {5}
-                                        <RiCopperCoinLine className="text-yellow-light" />
-                                    </div>
-                                </div>
-
                                 <button
                                     onClick={onLogoutClick}
-                                    className="flex items-center gap-1 text-sm mt-1 text-red-light transition-colors hover:text-red-dark self-end"
+                                    className="flex items-center gap-1 text-sm mt-1 text-red-light transition-colors hover:text-red-dark"
                                 >
                                     <RiLogoutBoxLine />
                                     <span>{t("log-out")}</span>
                                 </button>
                             </div>
                         </div>
+                        <div className="flex items-center gap-2 bg-secondary-light px-4 py-3 rounded-md text-primary font-semibold">
+                            <div className="text-gray-dark">Баланс:</div>
+                            <div className="flex items-center gap-1">
+                                <RiCoinFill className="text-yellow-light" />
+                                <span className="text-yellow">{5}</span>
+                            </div>
+                        </div>
+                        <Button
+                            color="yellowBorder"
+                            onClick={() =>
+                                dispatch(setOpenedModal(Modal.Deposit))
+                            }
+                            className="p-3 text-sm text-yellow"
+                        >
+                            <span>Поповнити баланс</span>
+                            <FaRegPlusSquare />
+                        </Button>
                     </div>
                 )}
             </div>
