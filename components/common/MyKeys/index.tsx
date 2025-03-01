@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/Button";
 import { LabelInput } from "@/components/ui/LabelInput";
+import SaveBtn from "@/components/ui/SaveBtn";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -61,10 +62,7 @@ const MyKeys = () => {
                     }}
                 />
             </div>
-
-            <Button color="purpleBackground" className="mt-8 mx-auto">
-                Зберегти
-            </Button>
+            <SaveBtn className="mt-8 mx-auto" />
         </div>
     );
 };

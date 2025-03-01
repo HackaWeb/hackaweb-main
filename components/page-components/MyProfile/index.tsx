@@ -9,12 +9,12 @@ import { ProfileForm } from "@/components/common/ProfileForm";
 import { Table } from "@/components/ui/Table";
 import MyKeys from "@/components/common/MyKeys";
 import { useTranslations } from "next-intl";
+import PromptHistory from "@/components/common/PromptHistory";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     const t = useTranslations("Profile");
-    const headersT = useTranslations("PromptTable");
 
-    const data = [
+    const promptHistory = [
         [1, "Створи таску в Трелло", "2024-02-15"],
         [3, "Створи опис для нового курсу по програмуванню", "2024-02-12"],
         [2, "Привіт gpt", "2024-02-14"],
@@ -37,20 +37,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                         isSelfProfile={true}
                     />
                     <MyKeys />
-                    <div>
-                        <div className="bg-secondary-light p-4 rounded-md overflow-hidden">
-                            <div className="text-primary font-semibold text-lg">
-                                {t("prompt-history")}
-                            </div>
-                            <Table
-                                className="mt-4"
-                                headers={["id", "contents", "date"].map(
-                                    (item) => headersT(item),
-                                )}
-                                data={data}
-                            />
-                        </div>
-                    </div>
+                    <PromptHistory history={promptHistory} />
                 </div>
             </div>
         </motion.div>

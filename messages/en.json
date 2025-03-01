@@ -12,10 +12,11 @@
     },
     "Profile": {
         "my-profile": "My profile",
+        "user-profile": "Profile of",
         "your-email": "Your email",
         "user-email": "User email",
         "your-name": "Your name",
-        "user-name": "user name",
+        "user-name": "User first name",
         "your-surname": "Your surname",
         "user-surname": "User surname",
         "your-keys": "Your API Keys",
