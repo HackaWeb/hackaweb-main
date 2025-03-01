@@ -21,14 +21,3 @@ export const updateProfile = async (
         method: "PUT",
         body,
     });
-
-interface DeleteProfileImageResponse {
-    isSuccess: boolean;
-}
-export const deleteProfileImage =
-    async (): Promise<DeleteProfileImageResponse> =>
-        fetchApi({
-            endpoint: `/profile/image`,
-            isAuthRequired: true,
-            method: "DELETE",
-        });
