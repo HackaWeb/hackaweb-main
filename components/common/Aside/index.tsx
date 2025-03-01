@@ -8,28 +8,22 @@ import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { Button } from "@/components/ui/Button";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AsideProps } from "./Aside.props";
-import { GiThink } from "react-icons/gi";
-import { FaHome } from "react-icons/fa";
-import { PiStudent } from "react-icons/pi";
 import { usePathname } from "@/helpers/navigation";
 import { Link } from "@/helpers/navigation";
+import { IoLogoSnapchat } from "react-icons/io";
+import { IoChatbubbleEllipses } from "react-icons/io5";
 
 export const Aside = ({ profile }: AsideProps) => {
     const links = [
         {
-            title: "Хоум",
+            title: "Чат",
             link: "/",
-            icon: <FaHome className="size-6" />,
+            icon: <IoChatbubbleEllipses className="size-6" />,
         },
         {
             title: "Мій кабінет",
             link: profile ? "/profile" : "/login",
             icon: <AiOutlineUser className="size-6" />,
-        },
-        {
-            title: "Students",
-            link: "/students",
-            icon: <PiStudent className="size-6" />,
         },
     ];
 
@@ -75,8 +69,8 @@ export const Aside = ({ profile }: AsideProps) => {
                         className="text-primary text-2xl flex items-center gap-2 text-white"
                         onClick={() => setActiveLink("Усі квести")}
                     >
-                        <GiThink className="size-12" />
-                        <span>QuizzApp</span>
+                        <IoLogoSnapchat className="size-12" />
+                        <span>HackaChat</span>
                     </Link>
 
                     <nav className="text-lg mt-8">
