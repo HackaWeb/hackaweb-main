@@ -1,6 +1,34 @@
 {
-    "Homepage": {
-        "title": "Ласкаво просимо на головну сторінку",
-        "content": "Це вміст головної сторінки"
+    "Aside": {
+        "chat": "Чат",
+        "profile": "Мій кабінет"
+    },
+    "Header": {
+        "log-out": "Вийти"
+    },
+    "Buttons": {
+        "go-back": "Повернутися назад",
+        "save": "Зберегти"
+    },
+    "Profile": {
+        "my-profile": "Мій кабінет",
+        "your-email": "Ваша пошта",
+        "user-email": "Пошта користувача",
+        "your-name": "Ваше ім'я",
+        "user-name": "Ім'я користувача",
+        "your-surname": "Ваше прізвище",
+        "user-surname": "Прізвище користувача",
+        "your-keys": "Ваші API ключі",
+        "update-success": "Профіль успішно оновлено",
+        "change-avatar": "Змінити аватар",
+        "trello-placeholder": "Введіть API ключ Trello",
+        "jira-placeholder": "Введіть API ключ Jira",
+        "shopify-placeholder": "Введіть API ключ Shopify",
+        "prompt-history": "Історія запитів"
+    },
+    "PromptTable": {
+        "id": "ID",
+        "contents": "Тема запиту",
+        "date": "Дата"
     }
 }

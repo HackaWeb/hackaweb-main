@@ -8,6 +8,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { ChatProps } from "./Chat.props";
+import { Skeleton } from "./Skeleton";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
     const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -15,9 +16,10 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     );
     const [messageInput, setMessageInput] = useState("");
     const [messages, setMessages] = useState<
-        { sender: string; text: string }[]
+        { sender: string; text: string; sentAt: string }[]
     >([]);
     const [isSending, setIsSending] = useState(false);
+    const [loading, setLoading] = useState(true);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -36,13 +38,19 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 .start()
                 .then(() => {
                     console.log("Connected to ChatHub!");
+                    setMessages((prev) => [...prev]);
+                    loadChatHistory();
 
                     connection.on(
                         "ReceiveResponse",
                         (serverResponse: string) => {
+                            console.log(serverResponse);
                             setMessages((prev) => [
                                 ...prev,
-                                { sender: "Server", text: serverResponse },
+                                {
+                                    sender: "Server",
+                                    text: serverResponse,
+                                },
                             ]);
                         },
                     );
@@ -60,9 +68,25 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
         }
     }, [connection]);
 
+    const loadChatHistory = async () => {
+        if (connection) {
+            try {
+                const history = await connection.invoke("LoadChatHistory");
+                console.log("Історія чату: ", history);
+                setMessages((prev) => [...prev, ...history]);
+                setLoading(false);
+            } catch (error) {
+                console.error("Помилка при завантаженні історії чату: ", error);
+                setLoading(false);
+            }
+        }
+    };
+    console.log(messages);
+
     const sendMessage = async () => {
         if (connection && messageInput.trim()) {
             setIsSending(true);
+            setMessageInput("");
             try {
                 await connection.invoke("SendMessage", messageInput);
                 setMessages((prev) => [
@@ -72,7 +96,6 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                         text: messageInput,
                     },
                 ]);
-                setMessageInput("");
             } catch (error) {
                 console.error("Помилка при надсиланні повідомлення: ", error);
             } finally {
@@ -82,6 +105,10 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     };
 
     useEffect(() => {
+        if (messages.length > 0) {
+            setLoading(false);
+        }
+
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
@@ -97,26 +124,30 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                     className="w-full bg-secondary-light p-4 rounded-lg h-[500px] overflow-y-auto"
                 >
                     <div className="flex flex-col space-y-3">
-                        {messages.map((msg, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className={`p-3 rounded-lg max-w-fit ${
-                                    msg.sender === profile.firstName ||
-                                    msg.sender === "Користувач"
-                                        ? "bg-secondary-dark ml-auto text-right"
-                                        : "bg-secondary-light"
-                                }`}
-                            >
-                                <div className="text-gray-500 text-sm">
-                                    {msg.sender}:
-                                </div>
-                                <div className="text-base mt-1 break-words">
-                                    {msg.text}
-                                </div>
-                            </motion.div>
-                        ))}
+                        {loading
+                            ? Array.from({ length: 5 }).map((_, index) => (
+                                  <Skeleton key={index} />
+                              ))
+                            : messages.map((msg, index) => (
+                                  <motion.div
+                                      key={index}
+                                      initial={{ opacity: 0, y: 10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      className={`p-3 rounded-lg max-w-fit ${
+                                          msg.sender === profile.firstName ||
+                                          msg.sender === "Користувач"
+                                              ? "bg-secondary-dark ml-auto text-right"
+                                              : "bg-secondary-light"
+                                      }`}
+                                  >
+                                      <div className="text-gray-500 text-sm">
+                                          {msg.sender}:
+                                      </div>
+                                      <div className="text-base mt-1 break-words">
+                                          {msg.text}
+                                      </div>
+                                  </motion.div>
+                              ))}
                     </div>
                     <div ref={messagesEndRef} />
                 </motion.div>
