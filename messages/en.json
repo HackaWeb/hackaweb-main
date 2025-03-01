@@ -21,7 +21,9 @@
         "user-surname": "User surname",
         "your-keys": "Your API Keys",
         "update-success": "Profile updated successfully",
-        "trello-placeholder": "Enter Trello API key",
+        "trello-key-placeholder": "Enter Trello API key",
+        "trello-token-placeholder": "Enter Trello Token",
+        "trello-instruction": "Go to https://trello.com/power-ups/admin/, select the organization, select 'API Key' on the left. Copy your API Key, also generate a token by clicking on the link in the text next to the API Key field.",
         "jira-placeholder": "Enter Jira API key",
         "shopify-placeholder": "Enter Shopify API key",
         "prompt-history": "Prompt history"
