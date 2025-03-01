@@ -99,5 +99,8 @@
     },
     "Table": {
         "no-data": "No data"
+    },
+    "Users": {
+        "user-list": "User list"
     }
 }

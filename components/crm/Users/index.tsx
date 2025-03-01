@@ -8,8 +8,11 @@ import { UsersProps } from "./Users.props";
 import { deleteUser } from "@/apis/users";
 import { toast } from "react-toastify";
 import { formatDateTime } from "@/helpers/formatDate";
+import { useTranslations } from "next-intl";
 
 export const UsersPageComponent = ({ users }: UsersProps) => {
+    const t = useTranslations("Users");
+
     const router = useRouter();
     const headers = [
         "ID",
@@ -66,7 +69,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
 
     return (
         <div className="grid bg-secondary-light p-6 rounded-md">
-            <h1 className="text-2xl font-bold mb-4 text-primary">Users List</h1>
+            <h1 className="text-2xl font-bold mb-4 text-primary">{t("user-list")}</h1>
             <Table headers={headers} data={data} className="mt-4" />
         </div>
     );
