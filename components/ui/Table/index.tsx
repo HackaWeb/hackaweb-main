@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 import { TableProps } from "./Table.props";
 import { Modal } from "@/types/modal.enum";
 import { selectOpenedModal } from "@/store/slices/openedModal";
-import { motion } from "framer-motion";
 
 export const Table = ({ headers, data, className }: TableProps) => {
     const tableContainerRef = useRef<HTMLDivElement | null>(null);
     const tableRef = useRef<HTMLTableElement | null>(null);
     const [isSticky, setIsSticky] = useState(false);
+    const [stickyTop, setStickyTop] = useState(0);
     const [tableWidth, setTableWidth] = useState(0);
     const [tableLeft, setTableLeft] = useState(0);
     const [columnWidths, setColumnWidths] = useState<number[]>([]);
@@ -23,7 +23,7 @@ export const Table = ({ headers, data, className }: TableProps) => {
 
             const rect = tableRef.current.getBoundingClientRect();
             setTableWidth(tableRef.current.offsetWidth);
-            setTableLeft(rect.left);
+            setTableLeft(rect.left + window.scrollX);
 
             // Get column widths from the original <thead>
             const thElements = Array.from(
@@ -32,13 +32,18 @@ export const Table = ({ headers, data, className }: TableProps) => {
             setColumnWidths(
                 thElements.map((th) => th.getBoundingClientRect().width),
             );
+
+            // Determine when to stick
+            setStickyTop(rect.top + window.scrollY);
         };
 
         const handleScroll = () => {
             if (!tableRef.current) return;
-            setIsSticky(tableRef.current.getBoundingClientRect().top < 0);
 
-            // Sync horizontal scroll position
+            const rect = tableRef.current.getBoundingClientRect();
+            setIsSticky(rect.top <= 0 && rect.bottom > 0);
+
+            // Sync horizontal scroll
             if (tableContainerRef.current) {
                 setScrollLeft(tableContainerRef.current.scrollLeft);
             }
@@ -57,19 +62,23 @@ export const Table = ({ headers, data, className }: TableProps) => {
     return (
         <div
             ref={tableContainerRef}
-            className={cn("w-full overflow-x-auto rounded-md", className)}
+            className={cn(
+                "w-full overflow-x-auto rounded-md relative",
+                className,
+            )}
             onScroll={() =>
                 setScrollLeft(tableContainerRef.current?.scrollLeft || 0)
             }
         >
-            {/* Cloned Sticky Header (conditionally rendered if no modal is open) */}
+            {/* Sticky Header */}
             {isSticky && openedModal === Modal.None && (
-                <motion.div
-                    className="fixed top-0 bg-white shadow-md z-50"
-                    style={{ width: tableWidth, left: tableLeft - scrollLeft }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                <div
+                    className="fixed top-0 left-0 bg-[#b1b2b8] shadow-md z-50 max-w-full overflow-x-hidden "
+                    style={{
+                        width: tableWidth,
+                        left: tableLeft - scrollLeft, // Keeps it aligned with the table
+                        boxSizing: "border-box", // Prevent overflow due to padding/borders
+                    }}
                 >
                     <table className="border-collapse text-primary w-full">
                         <thead>
@@ -89,7 +98,7 @@ export const Table = ({ headers, data, className }: TableProps) => {
                             </tr>
                         </thead>
                     </table>
-                </motion.div>
+                </div>
             )}
 
             {/* Original Table */}
