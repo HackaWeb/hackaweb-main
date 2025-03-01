@@ -42,9 +42,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-        console.log(messages);
     }, [messages]);
-    console.log(messages);
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[85vh]">
@@ -91,7 +89,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 <div className="relative mt-4 border-t border-secondary pt-3">
                     <form onSubmit={sendMessage}>
                         <Textarea
-                            placeholder="Напишіть повідомлення..."
+                            placeholder={t("type-message")}
                             className="w-full p-3 text-primary rounded-lg outline-none min-h-[150px]"
                             value={messageInput}
                             onChange={(e) => setMessageInput(e.target.value)}
@@ -110,6 +108,33 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                             )}
                         </Button>
                     </form>
+                </div>
+                <div className="mt-4 text-xs text-gray-dark">
+                    <div>{t("task-examples")}:</div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                        <Button
+                            color="purpleBorder"
+                            className="p-2 bg-secondary border-secondary rounded text-gray-dark"
+                            onClick={() =>
+                                setMessageInput(
+                                    "Створити дошку з назвою 'Дошка'",
+                                )
+                            }
+                        >
+                            {t("create-board")}
+                        </Button>
+                        <Button
+                            color="purpleBorder"
+                            className="p-2 bg-secondary border-secondary rounded text-gray-dark"
+                            onClick={() =>
+                                setMessageInput(
+                                    "Додати картку в список 'Завдання'",
+                                )
+                            }
+                        >
+                            {t("create-task")}
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

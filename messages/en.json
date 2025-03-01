@@ -37,7 +37,11 @@
         "transaction-date": "Date"
     },
     "Home": {
-        "ai-helper": "AI Helper"
+        "ai-helper": "AI Helper",
+        "type-message": "Type a message...",
+        "task-examples": "Task examples",
+        "create-board": "Create a board with name ",
+        "create-task": "Add a card with name "
     },
     "PromptTable": {
         "id": "ID",

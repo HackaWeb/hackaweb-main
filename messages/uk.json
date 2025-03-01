@@ -37,7 +37,11 @@
         "transaction-date": "Дата"
     },
     "Home": {
-        "ai-helper": "AI Помічник"
+        "ai-helper": "AI Помічник",
+        "type-message": "Напишіть повідомлення...",
+        "task-examples": "Приклади завдань",
+        "create-board": "Створити дошку з назвою ",
+        "create-task": "Додати картку з назвою "
     },
     "PromptTable": {
         "id": "ID",
