@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as signalR from "@microsoft/signalr";
 import { motion } from "framer-motion";
 import { IoSend } from "react-icons/io5";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { ChatProps } from "./Chat.props";
@@ -16,7 +17,8 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     const [messages, setMessages] = useState<
         { sender: string; text: string }[]
     >([]);
-    console.log(messages);
+    const [isSending, setIsSending] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const hubUrl = process.env.NEXT_PUBLIC_CHAT_HUB_URL as string;
@@ -60,6 +62,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
 
     const sendMessage = async () => {
         if (connection && messageInput.trim()) {
+            setIsSending(true);
             try {
                 await connection.invoke("SendMessage", messageInput);
                 setMessages((prev) => [
@@ -72,9 +75,17 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 setMessageInput("");
             } catch (error) {
                 console.error("Помилка при надсиланні повідомлення: ", error);
+            } finally {
+                setIsSending(false);
             }
         }
     };
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary max-w-4xl mx-auto">
@@ -83,7 +94,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="w-full bg-secondary-light p-4 rounded-lg h-[450px] overflow-y-auto"
+                    className="w-full bg-secondary-light p-4 rounded-lg h-[500px] overflow-y-auto"
                 >
                     <div className="flex flex-col space-y-3">
                         {messages.map((msg, index) => (
@@ -91,7 +102,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                 key={index}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className={`p-3 rounded-lg max-w-[600px] ${
+                                className={`p-3 rounded-lg max-w-fit ${
                                     msg.sender === profile.firstName ||
                                     msg.sender === "Користувач"
                                         ? "bg-secondary-dark ml-auto text-right"
@@ -107,6 +118,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                             </motion.div>
                         ))}
                     </div>
+                    <div ref={messagesEndRef} />
                 </motion.div>
                 <div className="relative mt-4 border-t border-gray-800 pt-3">
                     <Textarea
@@ -120,8 +132,13 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                         color="purpleBackground"
                         className="absolute right-4 bottom-4 rounded-full w-12 h-12 p-2"
                         onClick={sendMessage}
+                        disabled={isSending}
                     >
-                        <IoSend className="text-white size-6" />
+                        {isSending ? (
+                            <AiOutlineLoading3Quarters className="text-white animate-spin size-6" />
+                        ) : (
+                            <IoSend className="text-white size-6" />
+                        )}
                     </Button>
                 </div>
             </div>
