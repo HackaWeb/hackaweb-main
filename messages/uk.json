@@ -95,5 +95,8 @@
         "status-completed": "Завершено",
         "id": "ID",
         "user": "Користувач"
+    },
+    "Table": {
+        "no-data": "Немає даних"
     }
 }
