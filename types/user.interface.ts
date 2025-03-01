@@ -3,6 +3,6 @@ export interface UserProfile {
     firstName: string | null;
     lastName: string | null;
     email: string;
-    createdAt: string;
+    createdAt: Date;
     isAdmin?: boolean;
 }
