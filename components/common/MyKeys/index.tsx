@@ -1,9 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/Button";
 import { LabelInput } from "@/components/ui/LabelInput";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const MyKeys = () => {
+    const t = useTranslations("Profile");
     const [keys, setKeys] = useState<{
         trello: string;
         jira: string;
@@ -20,12 +22,12 @@ const MyKeys = () => {
 
     return (
         <div className="text-primary container bg-secondary-light p-6 rounded-md">
-            <span className="font-semibold text-lg">Ваші API_KEYS</span>
+            <span className="font-semibold text-lg">{t("your-keys")}</span>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <LabelInput
                     labelTitle="Trello"
                     value={keys.trello}
-                    placeholder="Введіть Trello API ключ..."
+                    placeholder={t("trello-placeholder")}
                     id="trello"
                     onChange={(e) => {
                         setKeys({
@@ -37,7 +39,7 @@ const MyKeys = () => {
                 <LabelInput
                     labelTitle="Jira"
                     value={keys.jira}
-                    placeholder="Введіть Jira API ключ..."
+                    placeholder={t("jira-placeholder")}
                     id="jira"
                     onChange={(e) => {
                         setKeys({
@@ -49,7 +51,7 @@ const MyKeys = () => {
                 <LabelInput
                     labelTitle="Shopify"
                     value={keys.shopify}
-                    placeholder="Введіть Shopify API ключ..."
+                    placeholder={t("shopify-placeholder")}
                     id="shopify"
                     onChange={(e) => {
                         setKeys({

@@ -13,10 +13,12 @@ import { Language } from "./Language";
 import { Messages } from "./Messages";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { Link, useRouter } from "@/helpers/navigation";
+import { useTranslations } from "next-intl";
 
 export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     const dispatch = useAppDispatch();
     const router = useRouter();
+    const t = useTranslations("Header");
 
     const setIsAsideOpenedHandler = (value: boolean) => {
         dispatch(setIsAsideOpened(value));
@@ -90,7 +92,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                     className="text-gray-dark flex items-center gap-1 text-sm mt-1"
                                 >
                                     <RiLogoutBoxLine />
-                                    <span>Log out</span>
+                                    <span>{t("log-out")}</span>
                                 </button>
                             </div>
                         </div>
