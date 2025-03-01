@@ -31,5 +31,12 @@
         "id": "ID",
         "contents": "Prompt contents",
         "date": "Date"
+    },
+    "Chat": {
+        "title": "AI Helper",
+        "sender-system": "System",
+        "sender-server": "Server",
+        "sender-user": "User",
+        "enter-message": "Enter a message..."
     }
 }

@@ -9,8 +9,10 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { ChatProps } from "./Chat.props";
 import { Skeleton } from "./Skeleton";
+import { useTranslations } from "next-intl";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
+    const t = useTranslations("Chat");
     const [connection, setConnection] = useState<signalR.HubConnection | null>(
         null,
     );
@@ -48,7 +50,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                             setMessages((prev) => [
                                 ...prev,
                                 {
-                                    sender: "Server",
+                                    sender: t("sender-server"),
                                     text: serverResponse,
                                     sentAt: new Date().toLocaleString("uk-UA"),
                                 },
@@ -60,7 +62,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                         setMessages((prev) => [
                             ...prev,
                             {
-                                sender: "System",
+                                sender: t("sender-system"),
                                 text: sysMsg,
                                 sentAt: new Date().toLocaleString("uk-UA"),
                             },
@@ -83,7 +85,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 setMessages((prev) => [
                     ...prev,
                     {
-                        sender: profile.firstName || "Користувач",
+                        sender: profile.firstName || t("sender-user"),
                         text: messageInput,
                         sentAt: new Date().toLocaleString("uk-UA"),
                     },
@@ -130,7 +132,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[87vh]">
-            <h1>AI помічник</h1>
+            <h1>{t("title")}</h1>
             <div className="flex flex-col mt-6 max-w-4xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -149,7 +151,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                       animate={{ opacity: 1, y: 0 }}
                                       className={`p-3 rounded-lg max-w-xl ${
                                           msg.sender === profile.firstName ||
-                                          msg.sender === "Користувач"
+                                          msg.sender === t("sender-user")
                                               ? "bg-secondary-dark ml-auto text-right"
                                               : "bg-secondary-light"
                                       }`}
@@ -172,7 +174,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 className={`p-3 rounded-lg max-w-xl ${
                                     msg.sender === profile.firstName ||
-                                    msg.sender === "Користувач"
+                                    msg.sender === t("sender-user")
                                         ? "bg-secondary-dark ml-auto text-right"
                                         : "bg-secondary-light"
                                 }`}
@@ -194,7 +196,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 <div className="relative mt-4 border-t border-secondary pt-3">
                     <form onSubmit={sendMessage}>
                         <Textarea
-                            placeholder="Напишіть повідомлення..."
+                            placeholder={t("enter-message")}
                             className="w-full p-3 text-primary rounded-lg outline-none min-h-[150px]"
                             value={messageInput}
                             onChange={(e) => setMessageInput(e.target.value)}

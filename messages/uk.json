@@ -31,5 +31,12 @@
         "id": "ID",
         "contents": "Тема запиту",
         "date": "Дата"
+    },
+    "Chat": {
+        "title": "AI помічник",
+        "sender-system": "Система",
+        "sender-server": "Сервер",
+        "sender-user": "Користувач",
+        "enter-message": "Напишіть повідомлення..."
     }
 }
