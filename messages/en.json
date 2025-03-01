@@ -24,7 +24,8 @@
         "trello-key-placeholder": "Enter Trello API key",
         "trello-token-placeholder": "Enter Trello Token",
         "trello-instruction": "Go to https://trello.com/power-ups/admin/, select the organization, select 'API Key' on the left. Copy your API Key, also generate a token by clicking on the link in the text next to the API Key field.",
-        "jira-placeholder": "Enter Jira API key",
+        "slack-placeholder": "Enter Slack Token",
+        "slack-instruction": "Go to https://api.slack.com/apps, select the app and generate a Token",
         "shopify-placeholder": "Enter Shopify API key",
         "prompt-history": "Prompt history"
     },

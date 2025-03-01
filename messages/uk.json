@@ -24,7 +24,8 @@
         "trello-key-placeholder": "Введіть API ключ Trello",
         "trello-token-placeholder": "Введіть токен Trello",
         "trello-instruction": "Перейдіть за посиланням https://trello.com/power-ups/admin/, оберіть організацію оберіть зліва пункт 'Ключ API'. Зкопіюйте власне поле Ключ API, також згенеруйте токен, клікнувши на посилання в тексті напроти поля Ключ API.",
-        "jira-placeholder": "Введіть API ключ Jira",
+        "slack-placeholder": "Введіть TOKEN Slack",
+        "slack-instruction": "Перейдіть за посиланням https://api.slack.com/apps, оберіть додаток та згенеруйте Token",
         "shopify-placeholder": "Введіть API ключ Shopify",
         "prompt-history": "Історія запитів"
     },

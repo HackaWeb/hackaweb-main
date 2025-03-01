@@ -11,13 +11,11 @@ const MyKeys = () => {
     const [keys, setKeys] = useState<{
         trelloKey: string;
         trelloToken: string;
-        jira: string;
-        shopify: string;
+        slackToken: string;
     }>({
         trelloKey: "",
         trelloToken: "",
-        jira: "",
-        shopify: "",
+        slackToken: "",
     });
 
     return (
@@ -55,30 +53,23 @@ const MyKeys = () => {
                         {t("trello-instruction")}
                     </p>
                 </div>
-                <LabelInput
-                    labelTitle="Jira"
-                    value={keys.jira}
-                    placeholder={t("jira-placeholder")}
-                    id="jira"
-                    onChange={(e) => {
-                        setKeys({
-                            ...keys,
-                            jira: e.target.value,
-                        });
-                    }}
-                />
-                <LabelInput
-                    labelTitle="Shopify"
-                    value={keys.shopify}
-                    placeholder={t("shopify-placeholder")}
-                    id="shopify"
-                    onChange={(e) => {
-                        setKeys({
-                            ...keys,
-                            shopify: e.target.value,
-                        });
-                    }}
-                />
+                <div>
+                    <LabelInput
+                        labelTitle="Slack"
+                        value={keys.slackToken}
+                        placeholder={t("slack-placeholder")}
+                        id="jira"
+                        onChange={(e) => {
+                            setKeys({
+                                ...keys,
+                                slackToken: e.target.value,
+                            });
+                        }}
+                    />
+                    <p className="text-gray mt-2 text-sm">
+                        {t("slack-instruction")}
+                    </p>
+                </div>
             </div>
             <SaveBtn className="mt-8 mx-auto" />
         </div>
