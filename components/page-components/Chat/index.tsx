@@ -11,6 +11,8 @@ import { Skeleton } from "./Skeleton";
 import { useTranslations } from "next-intl";
 import { useMessages } from "@/hooks/useMessages";
 import { FaTrashAlt } from "react-icons/fa";
+import { setBalance } from "@/store/slices/balance";
+import { useDispatch } from "react-redux";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
     const {
@@ -24,8 +26,8 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
         cleanChatHistory,
     } = useMessages(profile);
 
+    const dispatch = useDispatch();
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
     const t = useTranslations("Home");
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -45,6 +47,10 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [messages]);
+
+    useEffect(() => {
+        dispatch(setBalance(profile.balance));
+    }, [profile.balance]);
 
     return (
         <div className="mt-8 bg-secondary-light xsm:p-6 p-4 rounded-md text-primary min-h-[85vh]">
