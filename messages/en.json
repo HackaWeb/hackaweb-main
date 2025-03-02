@@ -78,7 +78,8 @@
         "type-message": "Type a message...",
         "task-examples": "Task examples",
         "create-board": "Create a board with name ",
-        "create-task": "Add a card with name "
+        "create-task": "Add a card with name ",
+        "clean-chat": "Clean Chat"
     },
     "PromptTable": {
         "id": "ID",
@@ -112,6 +113,15 @@
         "no-data": "No data"
     },
     "Users": {
-        "user-list": "User list"
+        "user-list": "User list",
+        "id":"ID",
+        "first-name": "First Name",
+        "last-name": "Last Name",
+        "email": "Email",
+        "registration-date": "Registration Date",
+        "balance": "Balance",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
     }
 }
