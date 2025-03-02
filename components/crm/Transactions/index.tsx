@@ -6,6 +6,8 @@ import { Table } from "@/components/ui/Table";
 import { RiCoinFill } from "react-icons/ri";
 import { useTranslations } from "use-intl";
 import { Link } from "@/helpers/navigation";
+import { motion } from "framer-motion";
+import { slideFromBottomAnimation } from "@/constants";
 
 export const TransactionsPageComponent = ({
     transactions,
@@ -24,7 +26,7 @@ export const TransactionsPageComponent = ({
     const transactionData: React.ReactNode[][] = transactions.map(
         (transaction) => {
             const amount = (
-                <div className="flex items-center gap-1">
+                <div>
                     <RiCoinFill
                         className={
                             transaction.type === "withdraw"
@@ -74,11 +76,14 @@ export const TransactionsPageComponent = ({
     );
 
     return (
-        <div className="grid bg-secondary-light p-6 rounded-md">
+        <motion.div
+            {...slideFromBottomAnimation}
+            className="grid bg-secondary-light p-6 rounded-md"
+        >
             <h1 className="text-2xl font-bold mb-4 text-primary">
                 {t("crm-transactions-title")}
             </h1>
             <Table headers={headers} data={transactionData} className="mt-4" />
-        </div>
+        </motion.div>
     );
 };
