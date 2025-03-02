@@ -11,7 +11,6 @@ export const Table = ({ headers, data, className }: TableProps) => {
                 className,
             )}
         >
-            {/* Original Table */}
             <table className="min-w-max border-collapse text-primary w-full">
                 <thead>
                     <tr className="bg-secondary-light text-primary">
