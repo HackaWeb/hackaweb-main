@@ -8,6 +8,9 @@ import { useRouter } from "@/helpers/navigation";
 import { ProfileFormProps } from "./ProfileForm.props";
 import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
+import { useTranslations } from "next-intl";
+import SaveBtn from "@/components/ui/SaveBtn";
+import { updateUser } from "@/apis/users";
 
 export const ProfileForm = ({
     profile,
@@ -15,6 +18,8 @@ export const ProfileForm = ({
     isSelfProfile,
 }: ProfileFormProps) => {
     const router = useRouter();
+    const t = useTranslations("Profile");
+    const t_toasts = useTranslations("Toasts");
 
     const [userData, setUserData] = useState({
         firstName: profile.firstName || "",
@@ -25,18 +30,30 @@ export const ProfileForm = ({
         e.preventDefault();
 
         if (!userData.firstName.length && !userData.lastName.length) {
-            toast.error("Заповніть хоча б одне поле");
+            toast.error(t_toasts("fill-one-field"));
         }
 
         try {
-            const response = await updateProfile({
-                firstName: userData.firstName,
-                lastName: userData.lastName,
-            });
+            if (isSelfProfile) {
+                const response = await updateProfile({
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                });
 
-            if (response.id) {
-                toast.success("Профіль успішно оновлено");
-                router.refresh();
+                if (response.id) {
+                    toast.success(t("update-success"));
+                    router.refresh();
+                }
+            } else {
+                const response = await updateUser(profile.id, {
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                });
+
+                if (response.id) {
+                    toast.success(t("update-success"));
+                    router.refresh();
+                }
             }
         } catch (error) {
             toast.error(SOMETHING_WRONG_MESSAGE);
@@ -49,9 +66,7 @@ export const ProfileForm = ({
             <form onSubmit={onUpdateProfileSubmit}>
                 <LabelInput
                     id="email"
-                    labelTitle={
-                        isSelfProfile ? "Ваша пошта" : `Пошта користувача`
-                    }
+                    labelTitle={t(isSelfProfile ? "your-email" : "user-email")}
                     value={profile.email}
                     type="email"
                     disabled
@@ -60,12 +75,10 @@ export const ProfileForm = ({
                 />
                 <LabelInput
                     id="firstName"
-                    labelTitle={
-                        isSelfProfile ? "Ваше імʼя" : "Імʼя користувача"
-                    }
+                    labelTitle={t(isSelfProfile ? "your-name" : "user-name")}
                     value={userData.firstName}
                     type="text"
-                    placeholder={isEditable ? "Введіть ім'я..." : ""}
+                    placeholder={isEditable ? t("your-name-placeholder") : ""}
                     disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({
@@ -77,12 +90,14 @@ export const ProfileForm = ({
                 />
                 <LabelInput
                     id="lastName"
-                    labelTitle={
-                        isSelfProfile ? "Ваше прізвище" : "Прізвище користувача"
-                    }
+                    labelTitle={t(
+                        isSelfProfile ? "your-surname" : "user-surname",
+                    )}
                     value={userData.lastName}
                     type="text"
-                    placeholder={isEditable ? "Введіть прізвище..." : ""}
+                    placeholder={
+                        isEditable ? t("your-surname-placeholder") : ""
+                    }
                     disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({
@@ -93,13 +108,7 @@ export const ProfileForm = ({
                     className="mt-6"
                 />
                 {isEditable && (
-                    <Button
-                        type="submit"
-                        color="purpleBackground"
-                        className="mt-6 mx-auto mb-2"
-                    >
-                        Зберегти зміни
-                    </Button>
+                    <SaveBtn type="submit" className="mt-6 mx-auto mb-2" />
                 )}
             </form>
         </div>

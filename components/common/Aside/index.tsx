@@ -8,29 +8,32 @@ import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { Button } from "@/components/ui/Button";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AsideProps } from "./Aside.props";
-import { GiThink } from "react-icons/gi";
-import { FaHome } from "react-icons/fa";
-import { PiStudent } from "react-icons/pi";
 import { usePathname } from "@/helpers/navigation";
 import { Link } from "@/helpers/navigation";
+import { IoChatbubbleEllipses } from "react-icons/io5";
+import { useTranslations } from "next-intl";
+import { FaRobot } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 export const Aside = ({ profile }: AsideProps) => {
+    const t = useTranslations("Aside");
     const links = [
         {
-            title: "Хоум",
+            title: t("chat"),
             link: "/",
-            icon: <FaHome className="size-6" />,
+            icon: <IoChatbubbleEllipses className="size-6" />,
         },
         {
-            title: "Мій кабінет",
+            title: t("profile"),
             link: profile ? "/profile" : "/login",
             icon: <AiOutlineUser className="size-6" />,
         },
-        {
-            title: "Students",
-            link: "/students",
-            icon: <PiStudent className="size-6" />,
-        },
+        profile &&
+            profile.isAdmin && {
+                title: "CRM",
+                link: "/crm/users",
+                icon: <MdAdminPanelSettings className="size-6" />,
+            },
     ];
 
     const dispatch = useAppDispatch();
@@ -53,7 +56,7 @@ export const Aside = ({ profile }: AsideProps) => {
             <Button
                 color="purpleBorder"
                 onClick={() => setIsAsideOpenedHandler(true)}
-                className="absolute top-2 left-2 lg:hidden p-2"
+                className="fixed top-2 left-2 lg:hidden p-2 bg-blue"
             >
                 <RxHamburgerMenu className="size-6" />
             </Button>
@@ -72,44 +75,46 @@ export const Aside = ({ profile }: AsideProps) => {
                 <div className="xsm:mt-6 mt-4">
                     <Link
                         href="/"
-                        className="text-primary text-2xl flex items-center gap-2 text-white"
-                        onClick={() => setActiveLink("Усі квести")}
+                        className="text-2xl flex items-center gap-2 text-purple"
                     >
-                        <GiThink className="size-12" />
-                        <span>QuizzApp</span>
+                        <FaRobot className="size-12" />
+                        <span>HackaChat</span>
                     </Link>
 
                     <nav className="text-lg mt-8">
                         <ul>
-                            {links.map((link, index) => (
-                                <li
-                                    className="relative flex items-center mt-6 transition-all"
-                                    key={index}
-                                >
-                                    <Link
-                                        href={link.link}
-                                        className="ml-2 flex items-center gap-4 text-white"
-                                        onClick={() =>
-                                            setActiveLink(link.title)
-                                        }
-                                    >
-                                        <div className="size-6">
-                                            {link.icon}
-                                        </div>
-                                        {link.title}
-                                    </Link>
-                                    <div
-                                        className={`absolute -left-4 flex items-center transition-all duration-300 ${
-                                            activeLink === link.title
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        }`}
-                                    >
-                                        <div className="w-[4px] h-10 bg-purple"></div>
-                                        <div className="w-4 h-6 bg-purple blur-md"></div>
-                                    </div>
-                                </li>
-                            ))}
+                            {links.map(
+                                (link, index) =>
+                                    link && (
+                                        <li
+                                            className="relative flex items-center mt-6 transition-all"
+                                            key={index}
+                                        >
+                                            <Link
+                                                href={link.link}
+                                                className="ml-2 flex items-center gap-4 text-white"
+                                                onClick={() =>
+                                                    setActiveLink(link.title)
+                                                }
+                                            >
+                                                <div className="size-6">
+                                                    {link.icon}
+                                                </div>
+                                                {link.title}
+                                            </Link>
+                                            <div
+                                                className={`absolute -left-4 flex items-center transition-all duration-300 ${
+                                                    activeLink === link.title
+                                                        ? "opacity-100"
+                                                        : "opacity-0"
+                                                }`}
+                                            >
+                                                <div className="w-[4px] h-10 bg-purple"></div>
+                                                <div className="w-4 h-6 bg-purple blur-md"></div>
+                                            </div>
+                                        </li>
+                                    ),
+                            )}
                         </ul>
                     </nav>
                 </div>

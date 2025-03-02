@@ -7,18 +7,19 @@ import { printUserNickname } from "@/helpers/printUserNickname";
 import { UserProfileProps } from "./UserProfile.props";
 import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
-import { Table } from "@/components/ui/Table";
+import { useTranslations } from "next-intl";
+import PromptHistory from "@/components/common/PromptHistory";
+import { useMessages } from "@/hooks/useMessages";
+import Transactions from "@/components/common/Transactions";
 
-const headers = ["ID", "Name", "Email", "Role"];
+export const UserDetailsPageComponent = ({
+    profile,
+    isEditable,
+    transactions,
+}: UserProfileProps) => {
+    const t = useTranslations("Profile");
+    const { messages } = useMessages(profile);
 
-const data = [
-    [1, "John Doe", "john.doe@example.com", "Admin"],
-    [2, "Jane Smith", "jane.smith@example.com", "User"],
-    [3, "Mark Johnson", "mark.johnson@example.com", "Moderator"],
-    [4, "Emily Davis", "emily.davis@example.com", "User"],
-];
-
-export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
     return (
         profile && (
             <motion.div
@@ -26,7 +27,7 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
                 className="mt-8 bg-secondary-light p-6 rounded-md"
             >
                 <h1 className="text-primary">
-                    Профіль користувача{" "}
+                    {t("user-profile")}{" "}
                     {printUserNickname(profile.firstName, profile.lastName)}
                 </h1>
                 <ReturnBtn className="mt-4" />
@@ -34,30 +35,19 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
                     <div>
                         <LeftColumnProfile
                             profile={profile}
-                            isEditable={true}
+                            isEditable={isEditable}
                         />
                     </div>
                     <div className="overflow-hidden">
                         <ProfileForm
                             profile={profile}
-                            isEditable={true}
+                            isEditable={isEditable}
                             isSelfProfile={false}
                         />
-                        <div>
-                            <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
-                                <div className="text-primary font-semibold text-lg">
-                                    Table Title
-                                </div>
-                                <Table
-                                    className="mt-4"
-                                    headers={headers}
-                                    data={data}
-                                />
-                            </div>
-                            <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
-                                <Table headers={headers} data={data} />
-                            </div>
-                        </div>
+                        <PromptHistory history={messages} />
+                        {isEditable && (
+                            <Transactions transactions={transactions} />
+                        )}
                     </div>
                 </div>
             </motion.div>

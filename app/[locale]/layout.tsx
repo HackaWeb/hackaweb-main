@@ -12,7 +12,6 @@ import { setCookie } from "@/helpers/setCookie";
 import { LayoutBackground } from "@/components/common/LayoutBackground";
 import { cn } from "@/helpers/cn";
 import { GoogleAuthProvider } from "@/components/providers/Google";
-import { refreshToken as refreshTokenHandler } from "@/apis/auth";
 import { Header } from "@/components/common/Header";
 import { Theme } from "@/types/theme.type";
 import { NextIntlClientProvider } from "next-intl";
@@ -27,6 +26,33 @@ const inter = Inter({
     display: "swap",
 });
 
+export const metadata: Metadata = {
+    title: "HackaChat – Chat with AI",
+    description:
+        "Chat with our AI helper and get instant responses to your questions. Let's get started!",
+    keywords: "chat, ai, helper, hackachat",
+    openGraph: {
+        title: "HackaChat – Chat with AI",
+        description:
+            "Chat with our AI helper and get instant responses to your questions. Let's get started!",
+        type: "website",
+        url: "https://hackaweb-main.vercel.app/",
+        images: [
+            {
+                url: "https://hackaweb-main.vercel.app/logo.png",
+                width: 1200,
+                height: 630,
+                alt: "HackaChat – Chat with AI",
+            },
+        ],
+    },
+    icons: {
+        icon: "/favicon.ico",
+        apple: "/apple-touch-icon.png",
+    },
+    manifest: "/manifest.json",
+};
+
 interface RootLayoutProps {
     children: ReactNode;
     params: Promise<{ locale: Locale }>;
@@ -35,8 +61,8 @@ interface RootLayoutProps {
 const RootLayout = async ({ children, params }: Readonly<RootLayoutProps>) => {
     const locale = (await params).locale;
     let token = await getCookie("token");
+    console.log(token);
     const theme = await getCookie<Theme>("theme");
-    const refreshToken = await getCookie("refreshToken");
 
     let profile = null;
 
@@ -48,24 +74,6 @@ const RootLayout = async ({ children, params }: Readonly<RootLayoutProps>) => {
         } catch (error) {
             console.error(error);
 
-            setCookie("token", "");
-            setCookie("refreshToken", "");
-        }
-    }
-
-    if (!token && refreshToken) {
-        try {
-            const res = await refreshTokenHandler({ refreshToken });
-
-            if (res.token) {
-                setCookie("token", res.token);
-                setCookie("refreshToken", res.refreshToken);
-
-                const profileData = await getProfile();
-                profile = "email" in profileData ? profileData : null;
-            }
-        } catch (error) {
-            console.error(error);
             setCookie("token", "");
             setCookie("refreshToken", "");
         }

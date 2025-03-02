@@ -8,10 +8,12 @@ import { useRouter } from "@/helpers/navigation";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { closeModal, selectOpenedModal } from "@/store/slices/openedModal";
 import { useAppSelector } from "@/store/hooks/useAppSelector";
+import { useTranslations } from "next-intl";
 
 export const ReturnBtn = ({ className }: ReturnBtnProps) => {
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const t = useTranslations("Buttons");
     const openedModal = useAppSelector(selectOpenedModal);
 
     const closeModalHandler = () => {
@@ -35,7 +37,7 @@ export const ReturnBtn = ({ className }: ReturnBtnProps) => {
             onClick={() => goBack()}
         >
             <TbArrowBackUp size={22} />
-            <span>Повернутися назад</span>
+            <span>{t("go-back")}</span>
         </Button>
     );
 };

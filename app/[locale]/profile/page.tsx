@@ -1,4 +1,5 @@
 import { getProfile } from "@/apis/profile";
+import { getMyTransactions } from "@/apis/transactions";
 import { MyProfilePageComponent } from "@/components/page-components/MyProfile";
 import { getCookie } from "@/helpers/getCookie";
 import { redirect } from "@/helpers/navigation";
@@ -31,7 +32,14 @@ const MyProfile = async () => {
         redirect("/login");
     }
 
-    return <MyProfilePageComponent profile={profile as UserProfile} />;
+    const transactions = await getMyTransactions();
+
+    return (
+        <MyProfilePageComponent
+            profile={profile as UserProfile}
+            transactions={transactions}
+        />
+    );
 };
 
 export default MyProfile;

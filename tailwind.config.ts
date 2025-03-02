@@ -56,6 +56,12 @@ export default {
                     dark: "var(--blue-dark)",
                     light: "var(--blue-light)",
                 },
+                loader: {
+                    DEFAULT: "var(--loader)",
+                },
+                loaderInside: {
+                    DEFAULT: "var(--loader-inside)",
+                },
             },
             borderRadius: {
                 lg: "var(--radius)",
