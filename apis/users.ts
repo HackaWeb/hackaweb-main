@@ -15,6 +15,22 @@ export const getUsers = async (): Promise<UserProfile[]> =>
         method: "GET",
     });
 
+
+interface UpdateUserBody {
+    firstName?: string;
+    lastName?: string;
+}
+export const updateUser = async (
+    userId: string,
+    body: UpdateUserBody,
+): Promise<UserProfile> =>
+    fetchApi({
+        endpoint: `/users/${userId}`,
+        isAuthRequired: true,
+        method: "PUT",
+        body: body,
+    });
+
 export interface DeleteUserResponse {
     statusCode: number;
     isSuccess: boolean;

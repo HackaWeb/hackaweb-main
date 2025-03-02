@@ -10,6 +10,7 @@ import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { useTranslations } from "next-intl";
 import SaveBtn from "@/components/ui/SaveBtn";
+import { updateUser } from "@/apis/users";
 
 export const ProfileForm = ({
     profile,
@@ -33,14 +34,26 @@ export const ProfileForm = ({
         }
 
         try {
-            const response = await updateProfile({
-                firstName: userData.firstName,
-                lastName: userData.lastName,
-            });
+            if (isSelfProfile) {
+                const response = await updateProfile({
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                });
 
-            if (response.id) {
-                toast.success(t("update-success"));
-                router.refresh();
+                if (response.id) {
+                    toast.success(t("update-success"));
+                    router.refresh();
+                }
+            } else {
+                const response = await updateUser(profile.id, {
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                });
+
+                if (response.id) {
+                    toast.success(t("update-success"));
+                    router.refresh();
+                }
             }
         } catch (error) {
             toast.error(SOMETHING_WRONG_MESSAGE);
