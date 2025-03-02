@@ -124,5 +124,11 @@
         "edit": "Edit",
         "delete": "Delete",
         "user-deleted": "User successfully deleted"
+    },
+    "Keys": {
+        "profile-error": "Failed to load profile",
+        "trello-key-error": "Failed to update Trello API key",
+        "trello-secret-error": "Failed to update Trello Secret key",
+        "slack-key-error": "Failed to update Slack API key"
     }
 }
