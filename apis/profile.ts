@@ -1,5 +1,6 @@
 import { UserProfile } from "@/types/user.interface";
 import { fetchApi } from "./fetchApi";
+import { ValidityResponseCapital } from "./common";
 
 export const getProfile = async (): Promise<UserProfile> =>
     fetchApi({

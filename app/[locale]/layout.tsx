@@ -61,6 +61,7 @@ interface RootLayoutProps {
 const RootLayout = async ({ children, params }: Readonly<RootLayoutProps>) => {
     const locale = (await params).locale;
     let token = await getCookie("token");
+    console.log(token);
     const theme = await getCookie<Theme>("theme");
 
     let profile = null;

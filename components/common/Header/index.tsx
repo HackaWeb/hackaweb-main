@@ -17,11 +17,13 @@ import { Button } from "@/components/ui/Button";
 import { Modal } from "@/types/modal.enum";
 import { setOpenedModal } from "@/store/slices/openedModal";
 import { RiCoinFill } from "react-icons/ri";
-import { selectBalance } from "@/store/slices/balance";
-
+import { selectBalance, setBalance } from "@/store/slices/balance";
 import { useAppSelector } from "@/store/hooks/useAppSelector";
+import { useEffect } from "react";
+
 export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     const dispatch = useAppDispatch();
+
     const balance = useAppSelector(selectBalance);
     const router = useRouter();
     const t = useTranslations("Header");
@@ -35,6 +37,12 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
         toast.success(t_toasts("log-out"));
         router.refresh();
     };
+
+    useEffect(() => {
+        if (profile) {
+            dispatch(setBalance(profile.balance));
+        }
+    }, []);
 
     return (
         <header className="max-sm:py-4 px-4 sm:p-6 lg:px-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
