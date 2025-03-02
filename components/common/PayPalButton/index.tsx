@@ -49,6 +49,12 @@ const PayPalButton = ({ amount }: PayPalButtonProps) => {
                         router.push("/");
                         toast.error(t_toasts("transaction-canceled"));
                     }}
+                    style={{
+                        layout: "horizontal",
+                        color: "white",
+                        shape: "pill",
+                        label: "pay",
+                    }}
                 />
             </div>
         </PayPalScriptProvider>

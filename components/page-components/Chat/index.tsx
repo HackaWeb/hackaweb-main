@@ -10,6 +10,7 @@ import { ChatProps } from "./Chat.props";
 import { Skeleton } from "./Skeleton";
 import { useTranslations } from "next-intl";
 import { useMessages } from "@/hooks/useMessages";
+import { FaTrashAlt } from "react-icons/fa";
 
 export const ChatPageComponent = ({ profile }: ChatProps) => {
     const {
@@ -20,6 +21,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
         sendMessage,
         messageInput,
         setMessageInput,
+        cleanChatHistory,
     } = useMessages(profile);
 
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -103,6 +105,15 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                             onChange={(e) => setMessageInput(e.target.value)}
                             onKeyDown={handleKeyDown}
                         />
+                        <Button
+                            color="redBorder"
+                            className="absolute left-4 bottom-4 w-12 h-12 p-1 bg-red text-white hover:text-gray-light"
+                            disabled={isSending}
+                            type="button"
+                            onClick={cleanChatHistory}
+                        >
+                            <FaTrashAlt size={20} />
+                        </Button>
                         <Button
                             color="purpleBackground"
                             className="absolute right-4 bottom-4 rounded-full w-12 h-12 p-2"
