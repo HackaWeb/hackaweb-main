@@ -103,6 +103,19 @@ export const useMessages = (profile: UserProfile) => {
         }
     };
 
+    const cleanChatHistory = async () => {
+        if (connection) {
+            try {
+                await connection.invoke("CleanHistory", profile.id);
+                window.location.reload();
+                setLoading(false);
+            } catch (error) {
+                console.error("Помилка при завантаженні історії чату: ", error);
+                setLoading(false);
+            }
+        }
+    };
+
     const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (connection && messageInput.trim()) {
@@ -139,5 +152,6 @@ export const useMessages = (profile: UserProfile) => {
         sendMessage,
         messageInput,
         setMessageInput,
+        cleanChatHistory,
     };
 };
