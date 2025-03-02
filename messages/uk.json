@@ -112,6 +112,15 @@
         "no-data": "Немає даних"
     },
     "Users": {
-        "user-list": "Усі користувачі"
+        "user-list": "Усі користувачі",
+        "id": "ID",
+        "first-name": "Ім'я",
+        "last-name": "Прізвище",
+        "email": "Пошта",
+        "registration-date":"Дата реєстрації",
+        "balance": "Баланс",
+        "actions": "Дії",
+        "edit":"Редагувати",
+        "delete":"Видалити"
     }
 }

@@ -112,6 +112,15 @@
         "no-data": "No data"
     },
     "Users": {
-        "user-list": "User list"
+        "user-list": "User list",
+        "id":"ID",
+        "first-name": "First Name",
+        "last-name": "Last Name",
+        "email": "Email",
+        "registration-date": "Registration Date",
+        "balance": "Balance",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
     }
 }
