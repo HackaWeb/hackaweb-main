@@ -30,9 +30,12 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
     const deleteUserHandler = async (userId: string) => {
         try {
             const res = await deleteUser(userId);
-            if (!res.IsSuccess) {
-                toast.error(res.ErrorMessage);
+            console.log(res);
+
+            if (!res.isSuccess) {
+                toast.error(res.errorMessage);
             } else {
+                toast.success(t("user-deleted"));
                 router.refresh();
             }
         } catch (error) {

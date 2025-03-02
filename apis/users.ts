@@ -16,9 +16,9 @@ export const getUsers = async (): Promise<UserProfile[]> =>
     });
 
 export interface DeleteUserResponse {
-    StatusCode: number;
-    IsSuccess: boolean;
-    ErrorMessage: string;
+    statusCode: number;
+    isSuccess: boolean;
+    errorMessage: string;
 }
 
 export const deleteUser = async (userId: string): Promise<DeleteUserResponse> =>
