@@ -79,9 +79,9 @@ export const RegisterPageComponent = () => {
             <h1>{t("register")}</h1>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col place-items-center"
+                className="flex flex-col place-items-center w-full"
             >
-                <div className="space-y-4 sm:mt-10 mt-6">
+                <div className="space-y-4 sm:mt-10 mt-6 w-full">
                     <LabelInput
                         labelTitle={t("email-title")}
                         id="email"
