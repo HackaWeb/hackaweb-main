@@ -55,7 +55,7 @@ const Transactions = ({ transactions }: TransactionsProps) => {
     ];
 
     return (
-        <div>
+        <div className="mt-5">
             <div className="bg-secondary-light p-4 rounded-md overflow-hidden">
                 <div className="text-primary font-semibold text-lg">
                     {t("transactions-title")}

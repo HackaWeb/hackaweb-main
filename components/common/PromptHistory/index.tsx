@@ -8,22 +8,20 @@ const PromptHistory = ({ history }: PromptHistoryProps) => {
     const headersT = useTranslations("PromptTable");
 
     return (
-        <div>
+        <div className="mt-5">
             <div className="bg-secondary-light p-4 rounded-md overflow-hidden">
                 <div className="text-primary font-semibold text-lg">
                     {t("prompt-history")}
                 </div>
                 <Table
                     className="mt-4"
-                    headers={["contents", "date"].map((item) =>
-                        headersT(item),
-                    )}
+                    headers={["contents", "date"].map((item) => headersT(item))}
                     data={history
-                        .filter((item) => item.sender != "Bot" && item.sender != "System")
-                        .map((item) => [
-                            item.message,
-                            item.sentAt,
-                        ])}
+                        .filter(
+                            (item) =>
+                                item.sender != "Bot" && item.sender != "System",
+                        )
+                        .map((item) => [item.message, item.sentAt])}
                 />
             </div>
         </div>

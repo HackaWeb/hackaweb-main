@@ -10,8 +10,7 @@ import { ProfileForm } from "@/components/common/ProfileForm";
 import { useTranslations } from "next-intl";
 import PromptHistory from "@/components/common/PromptHistory";
 import { useMessages } from "@/hooks/useMessages";
-
-const headers = ["ID", "Name", "Email", "Role"];
+import Transactions from "@/components/common/Transactions";
 
 export const UserDetailsPageComponent = ({
     profile,
@@ -46,6 +45,7 @@ export const UserDetailsPageComponent = ({
                             isSelfProfile={false}
                         />
                         <PromptHistory history={messages} />
+                        {isEditable && <Transactions transactions={[]} />}
                     </div>
                 </div>
             </motion.div>
