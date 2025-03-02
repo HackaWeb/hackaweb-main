@@ -12,7 +12,7 @@ import { usePathname } from "@/helpers/navigation";
 import { Link } from "@/helpers/navigation";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import { useTranslations } from "next-intl";
-import { FaRobot } from "react-icons/fa";
+import { FaRobot, FaUsersCog } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 
 export const Aside = ({ profile }: AsideProps) => {
@@ -30,8 +30,14 @@ export const Aside = ({ profile }: AsideProps) => {
         },
         profile &&
             profile.isAdmin && {
-                title: "CRM",
+                title: t("all-users"),
                 link: "/crm/users",
+                icon: <FaUsersCog className="size-6" />,
+            },
+        profile &&
+            profile.isAdmin && {
+                title: t("all-transactions"),
+                link: "/crm/transactions",
                 icon: <MdAdminPanelSettings className="size-6" />,
             },
     ];

@@ -1,7 +1,9 @@
 {
     "Aside": {
         "chat": "Чат",
-        "profile": "Мій кабінет"
+        "profile": "Мій кабінет",
+        "all-users": "Всі користувачі",
+        "all-transactions": "Всі транзакції"
     },
     "Toasts": {
         "auth-success": "Вас успішно авторизовано!",
@@ -80,6 +82,13 @@
         "create-board": "Створити дошку з назвою ",
         "create-task": "Додати картку з назвою ",
         "clean-chat": "Очистити чат"
+    },
+    "Examples": {
+        "create-board": "Створити дошку у Trello з назвою 'Дошка'",
+        "create-task": "Додати картку в список 'Завдання' у Trello",
+        "make-me-happy-status": "Зроби мені веселий статус у Slack",
+        "create-5-channels": "Створи 5 каналів у Slack з цікавими назвами",
+        "create-5-reminders": "Зроби мені 5 нагадувань, як розпорядок дня у Slack"
     },
     "PromptTable": {
         "id": "ID",
