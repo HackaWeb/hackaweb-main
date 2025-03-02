@@ -36,10 +36,10 @@ export const metadata: Metadata = {
         description:
             "Chat with our AI helper and get instant responses to your questions. Let's get started!",
         type: "website",
-        url: "https://hackaweb-main.vercel.app/",
+        url: "https://hackachat.vercel.app/",
         images: [
             {
-                url: "https://hackaweb-main.vercel.app/logo.png",
+                url: "https://hackachat.vercel.app/logo.png",
                 width: 1200,
                 height: 630,
                 alt: "HackaChat – Chat with AI",

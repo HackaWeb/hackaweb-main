@@ -1,7 +1,9 @@
 {
     "Aside": {
         "chat": "Chat",
-        "profile": "My Profile"
+        "profile": "My Profile",
+        "all-users": "All Users",
+        "all-transactions": "All Transactions"
     },
     "Toasts": {
         "auth-success": "You have been successfully authorized!",
@@ -81,6 +83,13 @@
         "create-task": "Add a card with name ",
         "clean-chat": "Clean Chat"
     },
+    "Examples": {
+        "create-board": "Create a board in Trello named 'Board'",
+        "create-task": "Add a card to the 'Tasks' list in Trello",
+        "make-me-happy-status": "Make me a happy status in Slack",
+        "create-5-channels": "Create 5 channels in Slack with interesting names",
+        "create-5-reminders": "Make me 5 reminders as a daily schedule in Slack"
+    },
     "PromptTable": {
         "id": "ID",
         "contents": "Prompt contents",
@@ -124,5 +133,11 @@
         "edit": "Edit",
         "delete": "Delete",
         "user-deleted": "User successfully deleted"
+    },
+    "Keys": {
+        "profile-error": "Failed to load profile",
+        "trello-key-error": "Failed to update Trello API key",
+        "trello-secret-error": "Failed to update Trello Secret key",
+        "slack-key-error": "Failed to update Slack API key"
     }
 }

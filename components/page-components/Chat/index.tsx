@@ -29,6 +29,15 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
     const dispatch = useDispatch();
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const t = useTranslations("Home");
+    const t_example = useTranslations("Examples");
+
+    const examples = [
+        t_example("create-board"),
+        t_example("create-task"),
+        t_example("make-me-happy-status"),
+        t_example("create-5-channels"),
+        t_example("create-5-reminders"),
+    ];
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -138,28 +147,16 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                 <div className="mt-4 text-xs text-gray-dark">
                     <div>{t("task-examples")}:</div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                        <Button
-                            color="purpleBorder"
-                            className="p-2 bg-secondary border-secondary rounded text-gray-dark"
-                            onClick={() =>
-                                setMessageInput(
-                                    "Створити дошку з назвою 'Дошка'",
-                                )
-                            }
-                        >
-                            {t("create-board")}
-                        </Button>
-                        <Button
-                            color="purpleBorder"
-                            className="p-2 bg-secondary border-secondary rounded text-gray-dark"
-                            onClick={() =>
-                                setMessageInput(
-                                    "Додати картку в список 'Завдання'",
-                                )
-                            }
-                        >
-                            {t("create-task")}
-                        </Button>
+                        {examples.map((example, i) => (
+                            <Button
+                                key={i}
+                                color="purpleBorder"
+                                className="p-2 bg-secondary border-secondary rounded text-gray-dark"
+                                onClick={() => setMessageInput(example)}
+                            >
+                                {example}
+                            </Button>
+                        ))}
                     </div>
                 </div>
             </div>

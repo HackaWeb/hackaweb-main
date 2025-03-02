@@ -9,6 +9,7 @@ import { Link } from "@/helpers/navigation";
 import { motion } from "framer-motion";
 import { slideFromBottomAnimation } from "@/constants";
 import { formatDateTime } from "@/helpers/formatDate";
+import { printUserNickname } from "@/helpers/printUserNickname";
 
 export const TransactionsPageComponent = ({
     transactions,
@@ -62,7 +63,10 @@ export const TransactionsPageComponent = ({
             return [
                 transaction.id,
                 <Link href={`/crm/users/${transaction.user.id}`}>
-                    {transaction.user.firstName} {transaction.user.lastName}
+                    {printUserNickname(
+                        transaction.user.firstName,
+                        transaction.user.lastName,
+                    )}
                 </Link>,
                 transaction.type === 1 ? (
                     <span className="text-red">
