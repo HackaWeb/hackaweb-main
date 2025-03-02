@@ -3,22 +3,34 @@ import React from "react";
 import { TransactionsProps } from "./transactions.props";
 import { useTranslations } from "next-intl";
 import { formatDateTime } from "@/helpers/formatDate";
+import { RiCoinFill } from "react-icons/ri";
 
 const Transactions = ({ transactions }: TransactionsProps) => {
     const t = useTranslations("Profile");
 
-    const transactionData: React.ReactNode[][] = Array.from(
-        { length: transactions.length },
-        (_, index) => {
-            const type = transactions[index].type
+    const transactionData: React.ReactNode[][] = transactions.map(
+        (transaction, index) => {
+            const isWithdrawal = transaction.type;
+            const type = isWithdrawal
                 ? t("transaction-type-withdrawal")
                 : t("transaction-type-deposit");
-            const amount = transactions[index].amount;
-            const balance = transactions[index].balance;
-            const date = formatDateTime(
-                new Date(transactions[index].transactionDate),
-            );
-            return [index + 1, type, amount, balance, date];
+            const amount = isWithdrawal
+                ? `- ${transaction.amount}`
+                : `+ ${transaction.amount}`;
+            const amountColor = isWithdrawal ? "text-red" : "text-purple";
+            const balance = transaction.balance;
+            const date = formatDateTime(new Date(transaction.transactionDate));
+
+            return [
+                transaction.id,
+                <span className={amountColor}>{type}</span>,
+                <span className={amountColor}>{amount}</span>,
+                <span className="flex items-center gap-1 text-yellow">
+                    <RiCoinFill className="size-4" />
+                    <span>{balance}</span>
+                </span>,
+                date,
+            ];
         },
     );
 
