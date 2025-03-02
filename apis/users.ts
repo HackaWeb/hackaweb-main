@@ -16,9 +16,29 @@ export const getUsers = async (): Promise<UserProfile[]> =>
         method: "GET",
     });
 
-export const deleteUser = async (
+
+interface UpdateUserBody {
+    firstName?: string;
+    lastName?: string;
+}
+export const updateUser = async (
     userId: string,
-): Promise<ValidityResponseCapital> =>
+    body: UpdateUserBody,
+): Promise<UserProfile> =>
+    fetchApi({
+        endpoint: `/users/${userId}`,
+        isAuthRequired: true,
+        method: "PUT",
+        body: body,
+    });
+
+export interface DeleteUserResponse {
+    statusCode: number;
+    isSuccess: boolean;
+    errorMessage: string;
+}
+
+export const deleteUser = async (userId: string): Promise<DeleteUserResponse> =>
     fetchApi({
         endpoint: `/users/${userId}`,
         isAuthRequired: true,

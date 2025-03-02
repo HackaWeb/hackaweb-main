@@ -19,7 +19,7 @@ export const TransactionsPageComponent = ({
         t("id"),
         t("user"),
         t("transaction-type"),
-        t("transaction-sum"),
+        t("transaction-summ"),
         t("transaction-balance"),
         t("transaction-date"),
     ];
@@ -38,7 +38,7 @@ export const TransactionsPageComponent = ({
                     >
                         <span>
                             {transaction.type === 1 ? "-" : "+"}
-                            {transaction.amount}
+                            {transaction.amount.toFixed(0)}
                         </span>
 
                         <RiCoinFill
@@ -53,7 +53,7 @@ export const TransactionsPageComponent = ({
             );
             const balance = (
                 <div className="flex items-center gap-1 text-yellow font-semibold">
-                    {transaction.balance}
+                    {transaction.balance.toFixed(0)}
                     <RiCoinFill className="size-4" />
                 </div>
             );

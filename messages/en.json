@@ -122,6 +122,7 @@
         "balance": "Balance",
         "actions": "Actions",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "user-deleted": "User successfully deleted"
     }
 }

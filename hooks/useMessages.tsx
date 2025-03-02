@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
 import { Message } from "@/components/page-components/Chat/Chat.props";
 import { UserProfile } from "@/types/user.interface";
+import { setBalance } from "@/store/slices/balance";
+import { useDispatch } from "react-redux";
+import { getProfile } from "@/apis/profile";
+import { toast } from "react-toastify";
 
 export const useMessages = (profile: UserProfile) => {
     const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -13,6 +17,7 @@ export const useMessages = (profile: UserProfile) => {
     const [loading, setLoading] = useState(true);
     const [isSending, setIsSending] = useState(false);
     const [messageInput, setMessageInput] = useState("");
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const hubUrl = process.env.NEXT_PUBLIC_CHAT_HUB_URL as string;
@@ -118,6 +123,14 @@ export const useMessages = (profile: UserProfile) => {
 
     const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!messageInput.trim())
+            return toast.error("Повідомлення не може бути пустим!");
+
+        if (!profile.balance)
+            return toast.error(
+                "Недостатньо токенів для відправки повідомлення!",
+            );
+
         if (connection && messageInput.trim()) {
             setIsSending(true);
             setMessageInput("");
@@ -142,6 +155,8 @@ export const useMessages = (profile: UserProfile) => {
                 setIsSending(false);
             }
         }
+        const { balance } = await getProfile();
+        dispatch(setBalance(balance));
     };
 
     return {

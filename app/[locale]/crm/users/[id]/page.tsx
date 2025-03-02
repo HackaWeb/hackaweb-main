@@ -1,4 +1,5 @@
 import { getProfile } from "@/apis/profile";
+import { getTransactionsByUserId } from "@/apis/transactions";
 import { getUser } from "@/apis/users";
 import { UserDetailsPageComponent } from "@/components/crm/Users/UserDetails";
 import { notFound } from "next/navigation";
@@ -33,8 +34,15 @@ const UserDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
     const user = await getUserHandler();
     if (!user) notFound();
     const isEditable = await getIsUserAdmin();
+    const transactions = await getTransactionsByUserId(user.id);
 
-    return <UserDetailsPageComponent isEditable={isEditable} profile={user} />;
+    return (
+        <UserDetailsPageComponent
+            isEditable={isEditable}
+            profile={user}
+            transactions={transactions}
+        />
+    );
 };
 
 export default UserDetails;

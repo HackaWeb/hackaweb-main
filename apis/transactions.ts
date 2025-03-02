@@ -13,6 +13,15 @@ export const getMyTransactions = async (): Promise<Transaction[]> =>
         method: "GET",
     });
 
+export const getTransactionsByUserId = async (
+    id: string,
+): Promise<Transaction[]> =>
+    fetchApi({
+        endpoint: `/transactions/${id}`,
+        isAuthRequired: true,
+        method: "GET",
+    });
+
 export const getTransactions = async (): Promise<Transaction[]> =>
     fetchApi({
         endpoint: `/transactions/all`,

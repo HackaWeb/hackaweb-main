@@ -30,9 +30,12 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
     const deleteUserHandler = async (userId: string) => {
         try {
             const res = await deleteUser(userId);
-            if (!res.IsSuccess) {
-                toast.error(res.ErrorMessage);
+            console.log(res);
+
+            if (!res.isSuccess) {
+                toast.error(res.errorMessage);
             } else {
+                toast.success(t("user-deleted"));
                 router.refresh();
             }
         } catch (error) {
@@ -57,7 +60,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
         user.email,
         user.createdAt ? formatDateTime(new Date(user.createdAt)) : "",
         <div className="flex gap-1 items-center text-purple font-semibold">
-            {index}
+            {user.balance.toFixed(0)}
             <FaCoins className="size-4" />
         </div>,
         <div className="flex gap-2" key={user.id}>
