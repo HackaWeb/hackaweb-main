@@ -124,5 +124,11 @@
         "edit": "Редагувати",
         "delete": "Видалити",
         "user-deleted": "Користувача успішно видалено"
+    },
+    "Keys": {
+        "profile-error": "Не вдалося завантажити профіль",
+        "trello-key-error": "Не вдалося змінити Trello API key",
+        "trello-secret-error": "Не вдалося змінити Trello Secret key",
+        "slack-key-error": "Не вдалося змінити Slack API key"
     }
 }
