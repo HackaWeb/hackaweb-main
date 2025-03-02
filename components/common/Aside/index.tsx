@@ -49,7 +49,7 @@ export const Aside = ({ profile }: AsideProps) => {
             <Button
                 color="purpleBorder"
                 onClick={() => setIsAsideOpenedHandler(true)}
-                className="absolute top-2 left-2 lg:hidden p-2"
+                className="fixed top-2 left-2 lg:hidden p-2 bg-blue"
             >
                 <RxHamburgerMenu className="size-6" />
             </Button>

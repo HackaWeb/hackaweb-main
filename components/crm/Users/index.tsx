@@ -9,6 +9,8 @@ import { deleteUser } from "@/apis/users";
 import { toast } from "react-toastify";
 import { formatDateTime } from "@/helpers/formatDate";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+import { slideFromBottomAnimation } from "@/constants";
 
 export const UsersPageComponent = ({ users }: UsersProps) => {
     const t = useTranslations("Users");
@@ -42,8 +44,16 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
         <Link href={`/crm/users/${user.id}`} key={user.id}>
             {user.id}
         </Link>,
-        user.firstName ? user.firstName.slice(0, 20) + "..." : "",
-        user.lastName ? user.lastName.slice(0, 20) + "..." : "",
+        user.firstName
+            ? user.firstName.length < 20
+                ? user.firstName
+                : user.firstName.slice(0, 20) + "..."
+            : "",
+        user.lastName
+            ? user.lastName.length < 20
+                ? user.lastName
+                : user.lastName.slice(0, 20) + "..."
+            : "",
         user.email,
         user.createdAt ? formatDateTime(new Date(user.createdAt)) : "",
         <div className="flex gap-1 items-center text-purple font-semibold">
@@ -69,9 +79,14 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
     ]);
 
     return (
-        <div className="grid bg-secondary-light p-6 rounded-md">
-            <h1 className="text-2xl font-bold mb-4 text-primary">{t("user-list")}</h1>
+        <motion.div
+            {...slideFromBottomAnimation}
+            className="grid bg-secondary-light p-6 rounded-md"
+        >
+            <h1 className="text-2xl font-bold mb-4 text-primary">
+                {t("user-list")}
+            </h1>
             <Table headers={headers} data={data} className="mt-4" />
-        </div>
+        </motion.div>
     );
 };
