@@ -15,6 +15,7 @@ import Transactions from "@/components/common/Transactions";
 export const MyProfilePageComponent = ({
     profile,
     transactions,
+    keys,
 }: MyProfileProps) => {
     const t = useTranslations("Profile");
     const { messages } = useMessages(profile);
@@ -34,7 +35,7 @@ export const MyProfilePageComponent = ({
                         isEditable={true}
                         isSelfProfile={true}
                     />
-                    <MyKeys />
+                    <MyKeys keys={keys} />
                     <PromptHistory history={messages} />
                     <Transactions transactions={transactions} />
                 </div>

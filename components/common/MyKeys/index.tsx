@@ -8,55 +8,36 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const MyKeys = () => {
+const MyKeys = ({ keys }: { keys: ApiKey[] }) => {
     const t = useTranslations("Profile");
-    const [trelloKey, setTrelloKey] = useState("");
-    const [trelloSecret, setTrelloSecret] = useState("");
-    const [slackKey, setSlackKey] = useState("");
-
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const userProfile = await getCredentials();
-                console.log(userProfile.keys);
-                setTrelloKey(
-                    userProfile.keys.find(
-                        (key) => key.keyType === ApiKeyType.TRELLO_API_KEY,
-                    )?.value ?? "",
-                );
-                setTrelloSecret(
-                    userProfile.keys.find(
-                        (key) => key.keyType === ApiKeyType.TRELLO_SECRET,
-                    )?.value ?? "",
-                );
-                setSlackKey(
-                    userProfile.keys.find(
-                        (key) => key.keyType === ApiKeyType.SLACK_API_KEY,
-                    )?.value ?? "",
-                );
-            } catch (error) {
-                console.error("Failed to load profile:", error);
-                toast.error("Не вдалося завантажити профіль");
-            }
-        };
-
-        fetchProfile();
-    }, []);
+    const t_keys = useTranslations("Keys");
+    const [trelloKey, setTrelloKey] = useState(
+        keys.find((key) => key.keyType == ApiKeyType.TRELLO_API_KEY)?.value ??
+            "",
+    );
+    const [trelloSecret, setTrelloSecret] = useState(
+        keys.find((key) => key.keyType == ApiKeyType.TRELLO_SECRET)?.value ??
+            "",
+    );
+    const [slackKey, setSlackKey] = useState(
+        keys.find((key) => key.keyType == ApiKeyType.SLACK_API_KEY)?.value ??
+            "",
+    );
 
     const updateCredentialHandler = async (credential: ApiKey) => {
         try {
             const res = await updateCredential(credential);
+            let errorMessage;
             if (!res.isSuccess) {
-                let errorMessage = "Failed to update ";
                 switch (credential.keyType) {
                     case ApiKeyType.TRELLO_API_KEY:
-                        errorMessage += "Trello API key";
+                        errorMessage = t_keys("trello-key-error");
                         break;
                     case ApiKeyType.TRELLO_SECRET:
-                        errorMessage += "Trello Secret key";
+                        errorMessage = t_keys("trello-secret-error");
                         break;
                     case ApiKeyType.SLACK_API_KEY:
-                        errorMessage += "Slack key";
+                        errorMessage = t_keys("slack-key-error");
                         break;
                 }
                 toast.error(errorMessage);
@@ -65,7 +46,7 @@ const MyKeys = () => {
             return true;
         } catch (error) {
             console.error(error);
-            toast.error("Помилка при оновленні ключа");
+            toast.error(t("profile-error"));
             return false;
         }
     };
