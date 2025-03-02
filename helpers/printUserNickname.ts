@@ -4,10 +4,10 @@ export const printUserNickname = (
     firstName: string | null,
     lastName: string | null,
 ) => {
-    const t = useTranslations("Profile");
+    /*  const t = useTranslations("Profile"); */
 
     if (!firstName && !lastName) {
-        return t("user");
+        return "User"; /* t("user"); */
     }
 
     return `${firstName || ""} ${lastName || ""}`;

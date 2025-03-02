@@ -1,7 +1,7 @@
 "use client";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { PayPalButtonProps } from "./PayPalButton.props";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { closeModal } from "@/store/slices/openedModal";
