@@ -15,8 +15,8 @@ const Transactions = ({ transactions }: TransactionsProps) => {
                 ? t("transaction-type-withdrawal")
                 : t("transaction-type-deposit");
             const amount = isWithdrawal
-                ? `- ${transaction.amount}`
-                : `+ ${transaction.amount}`;
+                ? `-${transaction.amount}`
+                : `+${transaction.amount}`;
             const amountColor = isWithdrawal ? "text-red" : "text-purple";
             const balance = transaction.balance;
             const date = formatDateTime(new Date(transaction.transactionDate));

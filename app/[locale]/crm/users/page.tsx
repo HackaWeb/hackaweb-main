@@ -1,5 +1,8 @@
 import { getUsers } from "@/apis/users";
+import CRMMenu from "@/components/common/CRMMenu";
 import { UsersPageComponent } from "@/components/crm/Users";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 const Users = async () => {
     const getUsersHandler = async () => {
@@ -14,7 +17,12 @@ const Users = async () => {
 
     const users = await getUsersHandler();
 
-    return <UsersPageComponent users={users} />;
+    return (
+        <>
+            <CRMMenu />
+            <UsersPageComponent users={users} />
+        </>
+    );
 };
 
 export default Users;
