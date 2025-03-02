@@ -1,22 +1,21 @@
-"use client";
 import { getProfile } from "@/apis/profile";
-import { useRouter } from "@/helpers/navigation";
+import { redirect } from "@/helpers/navigation";
 import React from "react";
 
 const CRMLayout = async ({ children }: { children: React.ReactNode }) => {
-    const router = useRouter();
     const checkIfAdmin = async () => {
         try {
             const user = await getProfile();
             if (!user.isAdmin) {
-                router.push("/login");
+                redirect("/login");
             }
         } catch (error) {
             console.error(error);
-            router.push("/login");
+            redirect("/login");
         }
     };
     await checkIfAdmin();
+
     return <>{children}</>;
 };
 

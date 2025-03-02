@@ -41,16 +41,3 @@ export const googleAuth = async (
         method: "POST",
         body: body,
     });
-
-interface RefreshTokenBody {
-    refreshToken: string;
-}
-export const refreshToken = async (
-    body: RefreshTokenBody,
-): Promise<AuthorizationResponse> =>
-    fetchApi({
-        endpoint: "/auth/refresh",
-        isAuthRequired: false,
-        method: "POST",
-        body: body,
-    });

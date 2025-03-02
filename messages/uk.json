@@ -69,7 +69,7 @@
         "transaction-type-withdrawal": "Виведення",
         "transaction-type-deposit": "Поповнення",
         "transaction-type": "Тип",
-        "transaction-summ": "Сума",
+        "transaction-sum": "Сума",
         "transaction-balance": "Баланс",
         "transaction-date": "Дата"
     },
@@ -118,10 +118,10 @@
         "first-name": "Ім'я",
         "last-name": "Прізвище",
         "email": "Пошта",
-        "registration-date":"Дата реєстрації",
+        "registration-date": "Дата реєстрації",
         "balance": "Баланс",
         "actions": "Дії",
-        "edit":"Редагувати",
-        "delete":"Видалити"
+        "edit": "Редагувати",
+        "delete": "Видалити"
     }
 }

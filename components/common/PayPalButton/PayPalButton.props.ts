@@ -1,3 +1,3 @@
 export interface PayPalButtonProps {
-    amount: string;
+    amount: number;
 }
