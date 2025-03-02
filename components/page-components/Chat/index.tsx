@@ -121,7 +121,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                         </Button>
                         <Button
                             color="purpleBackground"
-                            className="absolute right-4 bottom-4 rounded-full w-12 h-12 p-2"
+                            className="absolute right-4 bottom-2 rounded-full w-12 h-12 p-2 "
                             disabled={isSending}
                             type="submit"
                             name="Send message"

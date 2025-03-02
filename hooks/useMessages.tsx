@@ -7,6 +7,7 @@ import { UserProfile } from "@/types/user.interface";
 import { setBalance } from "@/store/slices/balance";
 import { useDispatch } from "react-redux";
 import { getProfile } from "@/apis/profile";
+import { toast } from "react-toastify";
 
 export const useMessages = (profile: UserProfile) => {
     const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -122,6 +123,14 @@ export const useMessages = (profile: UserProfile) => {
 
     const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!messageInput.trim())
+            return toast.error("Повідомлення не може бути пустим!");
+
+        if (!profile.balance)
+            return toast.error(
+                "Недостатньо токенів для відправки повідомлення!",
+            );
+
         if (connection && messageInput.trim()) {
             setIsSending(true);
             setMessageInput("");
