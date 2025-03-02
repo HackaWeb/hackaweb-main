@@ -15,9 +15,9 @@ import Transactions from "@/components/common/Transactions";
 export const UserDetailsPageComponent = ({
     profile,
     isEditable,
+    transactions,
 }: UserProfileProps) => {
     const t = useTranslations("Profile");
-
     const { messages } = useMessages(profile);
 
     return (
@@ -45,7 +45,9 @@ export const UserDetailsPageComponent = ({
                             isSelfProfile={false}
                         />
                         <PromptHistory history={messages} />
-                        {isEditable && <Transactions transactions={[]} />}
+                        {isEditable && (
+                            <Transactions transactions={transactions} />
+                        )}
                     </div>
                 </div>
             </motion.div>
