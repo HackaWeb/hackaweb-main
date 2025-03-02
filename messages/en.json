@@ -69,7 +69,7 @@
         "transaction-type-deposit": "Deposit",
         "prompt-history": "Prompt history",
         "transaction-type": "Type",
-        "transaction-summ": "Summ",
+        "transaction-sum": "Sum",
         "transaction-balance": "Balance",
         "transaction-date": "Date"
     },
@@ -114,7 +114,7 @@
     },
     "Users": {
         "user-list": "User list",
-        "id":"ID",
+        "id": "ID",
         "first-name": "First Name",
         "last-name": "Last Name",
         "email": "Email",

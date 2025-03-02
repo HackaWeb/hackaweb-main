@@ -12,7 +12,6 @@ import { setCookie } from "@/helpers/setCookie";
 import { LayoutBackground } from "@/components/common/LayoutBackground";
 import { cn } from "@/helpers/cn";
 import { GoogleAuthProvider } from "@/components/providers/Google";
-import { refreshToken as refreshTokenHandler } from "@/apis/auth";
 import { Header } from "@/components/common/Header";
 import { Theme } from "@/types/theme.type";
 import { NextIntlClientProvider } from "next-intl";
@@ -63,7 +62,6 @@ const RootLayout = async ({ children, params }: Readonly<RootLayoutProps>) => {
     const locale = (await params).locale;
     let token = await getCookie("token");
     const theme = await getCookie<Theme>("theme");
-    const refreshToken = await getCookie("refreshToken");
 
     let profile = null;
 
@@ -75,24 +73,6 @@ const RootLayout = async ({ children, params }: Readonly<RootLayoutProps>) => {
         } catch (error) {
             console.error(error);
 
-            setCookie("token", "");
-            setCookie("refreshToken", "");
-        }
-    }
-
-    if (!token && refreshToken) {
-        try {
-            const res = await refreshTokenHandler({ refreshToken });
-
-            if (res.token) {
-                setCookie("token", res.token);
-                setCookie("refreshToken", res.refreshToken);
-
-                const profileData = await getProfile();
-                profile = "email" in profileData ? profileData : null;
-            }
-        } catch (error) {
-            console.error(error);
             setCookie("token", "");
             setCookie("refreshToken", "");
         }

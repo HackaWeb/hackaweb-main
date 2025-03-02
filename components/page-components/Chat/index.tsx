@@ -73,7 +73,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                                       }`}
                                   >
                                       <div
-                                          className={`flex text-gray text-sm gap-1 ${
+                                          className={`flex text-primary text-sm gap-1 ${
                                               msg.sender ===
                                                   profile.firstName ||
                                               msg.sender === "User"

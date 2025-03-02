@@ -35,7 +35,7 @@ export const Deposit = () => {
                         = {(amount * TOKEN_RATE).toFixed(2)} $
                     </span>
                 )}
-                <PayPalButton amount={(amount * TOKEN_RATE).toFixed(2)} />
+                <PayPalButton amount={amount} />
             </div>
         </motion.div>
     );

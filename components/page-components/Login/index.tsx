@@ -46,7 +46,6 @@ export const LoginPageComponent = () => {
 
             if (res.token) {
                 setCookie("token", res.token);
-                setCookie("refreshToken", res.refreshToken);
                 toast.success(t_toasts("auth-success"));
                 router.refresh();
 

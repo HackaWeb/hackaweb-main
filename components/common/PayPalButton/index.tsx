@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { closeModal } from "@/store/slices/openedModal";
 import { useTranslations } from "next-intl";
+import { addTransaction } from "@/apis/transactions";
 
 const PayPalButton = ({ amount }: PayPalButtonProps) => {
     const router = useRouter();
@@ -40,7 +41,11 @@ const PayPalButton = ({ amount }: PayPalButtonProps) => {
                 <PayPalButtons
                     createOrder={async () => await createOrder()}
                     onApprove={async (data, actions) => {
-                        const order = await actions.order?.capture();
+                        await actions.order?.capture();
+                        await addTransaction({
+                            amount: Number(amount),
+                            createdAt: new Date().toISOString(),
+                        });
                         toast.success(t_toasts("transaction-success"));
                         router.refresh();
                         closeModalHandler();

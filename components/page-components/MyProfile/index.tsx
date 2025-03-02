@@ -12,7 +12,10 @@ import PromptHistory from "@/components/common/PromptHistory";
 import { useMessages } from "@/hooks/useMessages";
 import Transactions from "@/components/common/Transactions";
 
-export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
+export const MyProfilePageComponent = ({
+    profile,
+    transactions,
+}: MyProfileProps) => {
     const t = useTranslations("Profile");
     const { messages } = useMessages(profile);
 
@@ -33,7 +36,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     />
                     <MyKeys />
                     <PromptHistory history={messages} />
-                    <Transactions transactions={[]} />
+                    <Transactions transactions={transactions} />
                 </div>
             </div>
         </motion.div>

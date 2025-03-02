@@ -96,7 +96,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 <div className="flex items-center gap-1">
                                     <RiCoinFill className="text-yellow-light" />
                                     <span className="text-yellow-light">
-                                        {5}
+                                        {profile.balance}
                                     </span>
                                 </div>
                             </div>

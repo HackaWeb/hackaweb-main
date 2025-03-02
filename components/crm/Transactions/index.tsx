@@ -8,6 +8,7 @@ import { useTranslations } from "use-intl";
 import { Link } from "@/helpers/navigation";
 import { motion } from "framer-motion";
 import { slideFromBottomAnimation } from "@/constants";
+import { formatDateTime } from "@/helpers/formatDate";
 
 export const TransactionsPageComponent = ({
     transactions,
@@ -18,7 +19,7 @@ export const TransactionsPageComponent = ({
         t("id"),
         t("user"),
         t("transaction-type"),
-        t("transaction-summ"),
+        t("transaction-sum"),
         t("transaction-balance"),
         t("transaction-date"),
     ];
@@ -27,39 +28,43 @@ export const TransactionsPageComponent = ({
         (transaction) => {
             const amount = (
                 <div>
-                    <RiCoinFill
-                        className={
-                            transaction.type === "withdraw"
-                                ? "text-red"
-                                : "text-purple"
-                        }
-                    />
                     <div
                         className={
-                            transaction.type === "withdraw"
+                            "flex items-center gap-1 " +
+                            (transaction.type === 1
                                 ? "text-red font-semibold"
-                                : "text-purple font-semibold"
+                                : "text-purple font-semibold")
                         }
                     >
-                        {transaction.type === "withdraw" ? "-" : "+"}
-                        {transaction.amount}
+                        <span>
+                            {transaction.type === 1 ? "-" : "+"}
+                            {transaction.amount}
+                        </span>
+
+                        <RiCoinFill
+                            className={
+                                transaction.type === 1
+                                    ? "text-red"
+                                    : "text-purple"
+                            }
+                        />
                     </div>
                 </div>
             );
             const balance = (
                 <div className="flex items-center gap-1 text-yellow font-semibold">
+                    {transaction.balance}
                     <RiCoinFill className="size-4" />
-                    {transaction.remainder}
                 </div>
             );
-            const date = new Date(transaction.doneAt).toLocaleDateString();
+            const date = formatDateTime(new Date(transaction.transactionDate));
 
             return [
                 transaction.id,
                 <Link href={`/crm/users/${transaction.user.id}`}>
                     {transaction.user.firstName} {transaction.user.lastName}
                 </Link>,
-                transaction.type === "withdraw" ? (
+                transaction.type === 1 ? (
                     <span className="text-red">
                         {t("transaction-type-withdrawal")}
                     </span>
