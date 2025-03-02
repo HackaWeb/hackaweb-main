@@ -98,7 +98,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                     <form onSubmit={sendMessage}>
                         <Textarea
                             placeholder={t("type-message")}
-                            className="w-full p-3 text-primary rounded-lg outline-none min-h-[150px]"
+                            className="w-full p-3 mb-16 text-primary rounded-lg outline-none min-h-[150px]"
                             value={messageInput}
                             onChange={(e) => setMessageInput(e.target.value)}
                             onKeyDown={handleKeyDown}

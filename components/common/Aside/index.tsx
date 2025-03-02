@@ -13,6 +13,7 @@ import { Link } from "@/helpers/navigation";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { FaRobot } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 export const Aside = ({ profile }: AsideProps) => {
     const t = useTranslations("Aside");
@@ -27,6 +28,12 @@ export const Aside = ({ profile }: AsideProps) => {
             link: profile ? "/profile" : "/login",
             icon: <AiOutlineUser className="size-6" />,
         },
+        profile &&
+            profile.isAdmin && {
+                title: "CRM",
+                link: "/crm/users",
+                icon: <MdAdminPanelSettings className="size-6" />,
+            },
     ];
 
     const dispatch = useAppDispatch();
@@ -76,35 +83,38 @@ export const Aside = ({ profile }: AsideProps) => {
 
                     <nav className="text-lg mt-8">
                         <ul>
-                            {links.map((link, index) => (
-                                <li
-                                    className="relative flex items-center mt-6 transition-all"
-                                    key={index}
-                                >
-                                    <Link
-                                        href={link.link}
-                                        className="ml-2 flex items-center gap-4 text-white"
-                                        onClick={() =>
-                                            setActiveLink(link.title)
-                                        }
-                                    >
-                                        <div className="size-6">
-                                            {link.icon}
-                                        </div>
-                                        {link.title}
-                                    </Link>
-                                    <div
-                                        className={`absolute -left-4 flex items-center transition-all duration-300 ${
-                                            activeLink === link.title
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        }`}
-                                    >
-                                        <div className="w-[4px] h-10 bg-purple"></div>
-                                        <div className="w-4 h-6 bg-purple blur-md"></div>
-                                    </div>
-                                </li>
-                            ))}
+                            {links.map(
+                                (link, index) =>
+                                    link && (
+                                        <li
+                                            className="relative flex items-center mt-6 transition-all"
+                                            key={index}
+                                        >
+                                            <Link
+                                                href={link.link}
+                                                className="ml-2 flex items-center gap-4 text-white"
+                                                onClick={() =>
+                                                    setActiveLink(link.title)
+                                                }
+                                            >
+                                                <div className="size-6">
+                                                    {link.icon}
+                                                </div>
+                                                {link.title}
+                                            </Link>
+                                            <div
+                                                className={`absolute -left-4 flex items-center transition-all duration-300 ${
+                                                    activeLink === link.title
+                                                        ? "opacity-100"
+                                                        : "opacity-0"
+                                                }`}
+                                            >
+                                                <div className="w-[4px] h-10 bg-purple"></div>
+                                                <div className="w-4 h-6 bg-purple blur-md"></div>
+                                            </div>
+                                        </li>
+                                    ),
+                            )}
                         </ul>
                     </nav>
                 </div>
