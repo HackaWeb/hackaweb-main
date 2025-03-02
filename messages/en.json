@@ -91,7 +91,7 @@
         "transaction-type-withdrawal": "Withdrawal",
         "transaction-type-deposit": "Deposit",
         "transaction-type": "Type",
-        "transaction-summ": "Amount",
+        "transaction-sum": "Amount",
         "transaction-balance": "Balance",
         "transaction-date": "Date",
         "transaction-status": "Status",

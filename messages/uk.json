@@ -91,7 +91,7 @@
         "transaction-type-withdrawal": "Виведення",
         "transaction-type-deposit": "Поповнення",
         "transaction-type": "Тип",
-        "transaction-summ": "Сума",
+        "transaction-sum": "Сума",
         "transaction-balance": "Баланс",
         "transaction-date": "Дата",
         "transaction-status": "Статус",
@@ -122,6 +122,7 @@
         "balance": "Баланс",
         "actions": "Дії",
         "edit": "Редагувати",
-        "delete": "Видалити"
+        "delete": "Видалити",
+        "delete-success": "Користувача видалено успішно"
     }
 }

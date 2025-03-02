@@ -33,7 +33,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
             if (!res.IsSuccess) {
                 toast.error(res.ErrorMessage);
             } else {
-                router.refresh();
+                toast.success(t("delete-success"));
             }
         } catch (error) {
             console.error(error);
@@ -57,7 +57,7 @@ export const UsersPageComponent = ({ users }: UsersProps) => {
         user.email,
         user.createdAt ? formatDateTime(new Date(user.createdAt)) : "",
         <div className="flex gap-1 items-center text-purple font-semibold">
-            {index}
+            {user.balance}
             <FaCoins className="size-4" />
         </div>,
         <div className="flex gap-2" key={user.id}>
