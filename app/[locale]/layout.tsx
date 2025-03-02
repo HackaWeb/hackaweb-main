@@ -27,6 +27,33 @@ const inter = Inter({
     display: "swap",
 });
 
+export const metadata: Metadata = {
+    title: "HackaChat – Chat with AI",
+    description:
+        "Chat with our AI helper and get instant responses to your questions. Let's get started!",
+    keywords: "chat, ai, helper, hackachat",
+    openGraph: {
+        title: "HackaChat – Chat with AI",
+        description:
+            "Chat with our AI helper and get instant responses to your questions. Let's get started!",
+        type: "website",
+        url: "https://hackaweb-main.vercel.app/",
+        images: [
+            {
+                url: "https://hackaweb-main.vercel.app/logo.png",
+                width: 1200,
+                height: 630,
+                alt: "HackaChat – Chat with AI",
+            },
+        ],
+    },
+    icons: {
+        icon: "/favicon.ico",
+        apple: "/apple-touch-icon.png",
+    },
+    manifest: "/manifest.json",
+};
+
 interface RootLayoutProps {
     children: ReactNode;
     params: Promise<{ locale: Locale }>;

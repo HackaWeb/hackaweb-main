@@ -118,6 +118,8 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                             className="absolute right-4 bottom-4 rounded-full w-12 h-12 p-2"
                             disabled={isSending}
                             type="submit"
+                            name="Send message"
+                            aria-label="Send message"
                         >
                             {isSending ? (
                                 <AiOutlineLoading3Quarters className="text-white animate-spin size-6" />
