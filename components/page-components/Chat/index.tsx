@@ -105,12 +105,13 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                         />
                         <Button
                             color="redBorder"
-                            className="absolute left-4 bottom-4 w-12 h-12 p-1 bg-red text-white hover:text-gray-light"
+                            className="absolute left-3 bottom-4 p-1 bg-red text-white hover:text-gray-light"
                             disabled={isSending}
                             type="button"
                             onClick={cleanChatHistory}
                         >
                             <FaTrashAlt size={20} />
+                            Clean Chat
                         </Button>
                         <Button
                             color="purpleBackground"
