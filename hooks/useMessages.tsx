@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
 import { Message } from "@/components/page-components/Chat/Chat.props";
 import { UserProfile } from "@/types/user.interface";
+import { setBalance } from "@/store/slices/balance";
+import { useDispatch } from "react-redux";
+import { getProfile } from "@/apis/profile";
 
 export const useMessages = (profile: UserProfile) => {
     const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -13,6 +16,7 @@ export const useMessages = (profile: UserProfile) => {
     const [loading, setLoading] = useState(true);
     const [isSending, setIsSending] = useState(false);
     const [messageInput, setMessageInput] = useState("");
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const hubUrl = process.env.NEXT_PUBLIC_CHAT_HUB_URL as string;
@@ -142,6 +146,8 @@ export const useMessages = (profile: UserProfile) => {
                 setIsSending(false);
             }
         }
+        const { balance } = await getProfile();
+        dispatch(setBalance(balance));
     };
 
     return {

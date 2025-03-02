@@ -17,9 +17,12 @@ import { Button } from "@/components/ui/Button";
 import { Modal } from "@/types/modal.enum";
 import { setOpenedModal } from "@/store/slices/openedModal";
 import { RiCoinFill } from "react-icons/ri";
+import { selectBalance } from "@/store/slices/balance";
 
+import { useAppSelector } from "@/store/hooks/useAppSelector";
 export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     const dispatch = useAppDispatch();
+    const balance = useAppSelector(selectBalance);
     const router = useRouter();
     const t = useTranslations("Header");
     const t_toasts = useTranslations("Toasts");
@@ -96,7 +99,7 @@ export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
                                 <div className="flex items-center gap-1">
                                     <RiCoinFill className="text-yellow-light" />
                                     <span className="text-yellow-light">
-                                        {profile.balance}
+                                        {balance}
                                     </span>
                                 </div>
                             </div>

@@ -17,7 +17,6 @@ export const UserDetailsPageComponent = ({
     isEditable,
 }: UserProfileProps) => {
     const t = useTranslations("Profile");
-
     const { messages } = useMessages(profile);
 
     return (
