@@ -18,6 +18,7 @@ export const ProfileForm = ({
 }: ProfileFormProps) => {
     const router = useRouter();
     const t = useTranslations("Profile");
+    const t_toasts = useTranslations("Toasts");
 
     const [userData, setUserData] = useState({
         firstName: profile.firstName || "",
@@ -28,7 +29,7 @@ export const ProfileForm = ({
         e.preventDefault();
 
         if (!userData.firstName.length && !userData.lastName.length) {
-            toast.error("Заповніть хоча б одне поле");
+            toast.error(t_toasts("fill-one-field"));
         }
 
         try {
@@ -64,7 +65,7 @@ export const ProfileForm = ({
                     labelTitle={t(isSelfProfile ? "your-name" : "user-name")}
                     value={userData.firstName}
                     type="text"
-                    placeholder={isEditable ? "Введіть ім'я..." : ""}
+                    placeholder={isEditable ? t("your-name-placeholder") : ""}
                     disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({
@@ -81,7 +82,9 @@ export const ProfileForm = ({
                     )}
                     value={userData.lastName}
                     type="text"
-                    placeholder={isEditable ? "Введіть прізвище..." : ""}
+                    placeholder={
+                        isEditable ? t("your-surname-placeholder") : ""
+                    }
                     disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({

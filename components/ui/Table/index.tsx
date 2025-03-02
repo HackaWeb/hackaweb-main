@@ -1,9 +1,17 @@
 import { cn } from "@/lib/utils";
 import { TableProps } from "./Table.props";
+import { useTranslations } from "next-intl";
 
 export const Table = ({ headers, data, className }: TableProps) => {
+    const t = useTranslations("Table");
     return (
-        <div className={cn("overflow-x-auto w-full rounded-md", className)}>
+        <div
+            className={cn(
+                "w-full overflow-x-auto rounded-md relative",
+                className,
+            )}
+        >
+            {/* Original Table */}
             <table className="min-w-max border-collapse text-primary w-full">
                 <thead>
                     <tr className="bg-secondary-light text-primary">
@@ -22,7 +30,10 @@ export const Table = ({ headers, data, className }: TableProps) => {
                                 className="border-t border-gray-800"
                             >
                                 {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex} className="py-2 xsm:px-4 px-2 text-sm xsm:text-base">
+                                    <td
+                                        key={cellIndex}
+                                        className="py-2 px-2 text-sm xsm:text-base"
+                                    >
                                         {cell}
                                     </td>
                                 ))}
@@ -32,9 +43,9 @@ export const Table = ({ headers, data, className }: TableProps) => {
                         <tr>
                             <td
                                 colSpan={headers.length}
-                                className="py-2 px-2 xsm:px-4 text-center"
+                                className="py-2 px-2 text-center"
                             >
-                                Немає даних
+                                {t("no-data")}
                             </td>
                         </tr>
                     )}

@@ -1,9 +1,9 @@
 import { UserProfile } from "@/types/user.interface";
 
 export interface Message {
-    sender: UserProfile;
-    text: string;
-    createdAt: string;
+    sender: string;
+    message: string;
+    sentAt: string;
 }
 
 export interface Chat {

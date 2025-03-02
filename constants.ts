@@ -87,3 +87,5 @@ export const slideFromRightAnimation = {
         ease: "easeInOut",
     },
 };
+
+export const TOKEN_RATE = 0.1;

@@ -3,40 +3,115 @@
         "chat": "Chat",
         "profile": "My Profile"
     },
+    "Toasts": {
+        "auth-success": "You have been successfully authorized!",
+        "log-out": "You have successfully logged out!",
+        "deposit-error": "Enter deposit amount!",
+        "transaction-success": "Transaction completed successfully!",
+        "transaction-canceled": "Transaction canceled!",
+        "fill-one-field": "Fill in at least one field!",
+        "fill-all-fields": "Fill in all fields!",
+        "invalid-email": "Your email is not valid!",
+        "passwords-not-match": "Passwords do not match!"
+    },
+    "Auth": {
+        "login": "Login",
+        "register": "Register",
+        "third-party": "Or auth with social networks",
+        "email-title": "Type your email",
+        "email-placeholder": "Email..",
+        "password-title": "Type your password",
+        "password-placeholder": "Password..",
+        "strong-password-title": "Type strong password",
+        "strong-password-placeholder": "Strong password..",
+        "password-confirm-title": "Confirm password",
+        "password-confirm-placeholder": "Confirm password..",
+        "no-account": "Don't have an account? Register!"
+    },
     "Header": {
-        "log-out": "Log out"
+        "log-out": "Log out",
+        "balance": "Balance",
+        "deposit": "Deposit",
+        "login": "Login",
+        "register": "Register"
+    },
+    "Deposit": {
+        "title": "Deposit",
+        "amount": "Amount of tokens",
+        "amount-placeholder": "Enter amount.."
     },
     "Buttons": {
         "go-back": "Go back",
         "save": "Save"
     },
     "Profile": {
+        "user": "User",
         "my-profile": "My profile",
         "user-profile": "Profile of",
         "your-email": "Your email",
         "user-email": "User email",
         "your-name": "Your name",
+        "your-name-placeholder": "Type name..",
         "user-name": "User first name",
         "your-surname": "Your surname",
+        "your-surname-placeholder": "Type surname..",
         "user-surname": "User surname",
         "your-keys": "Your API Keys",
         "update-success": "Profile updated successfully",
-        "change-avatar": "Change avatar",
-        "trello-placeholder": "Enter Trello API key",
-        "jira-placeholder": "Enter Jira API key",
+        "trello-key-placeholder": "Enter Trello API key",
+        "trello-token-placeholder": "Enter Trello Token",
+        "trello-instruction": "Go to https://trello.com/power-ups/admin/, select the organization, select 'API Key' on the left. Copy your API Key, also generate a token by clicking on the link in the text next to the API Key field.",
+        "slack-placeholder": "Enter Slack Token",
+        "slack-instruction": "Go to https://api.slack.com/apps, select the app and generate a Token",
         "shopify-placeholder": "Enter Shopify API key",
-        "prompt-history": "Prompt history"
+        "transactions-title": "Transactions",
+        "transaction-type-withdrawal": "Withdrawal",
+        "transaction-type-deposit": "Deposit",
+        "prompt-history": "Prompt history",
+        "transaction-type": "Type",
+        "transaction-summ": "Summ",
+        "transaction-balance": "Balance",
+        "transaction-date": "Date"
+    },
+    "Home": {
+        "ai-helper": "AI Helper",
+        "type-message": "Type a message...",
+        "task-examples": "Task examples",
+        "create-board": "Create a board with name ",
+        "create-task": "Add a card with name "
     },
     "PromptTable": {
         "id": "ID",
         "contents": "Prompt contents",
         "date": "Date"
     },
-    "Chat": {
-        "title": "AI Helper",
-        "sender-system": "System",
-        "sender-server": "Server",
-        "sender-user": "User",
-        "enter-message": "Enter a message..."
+    "CRM": {
+        "crm-transactions-title": "CRM Transactions",
+        "transaction-type-withdrawal": "Withdrawal",
+        "transaction-type-deposit": "Deposit",
+        "transaction-type": "Type",
+        "transaction-summ": "Amount",
+        "transaction-balance": "Balance",
+        "transaction-date": "Date",
+        "transaction-status": "Status",
+        "status-pending": "Pending",
+        "status-completed": "Completed",
+        "id": "ID",
+        "user": "User",
+        "first-name": "First Name",
+        "last-name": "Last Name",
+        "email": "Email",
+        "registration-date": "Registration Date",
+        "balance": "Balance",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "users-list": "Users List"
+    },
+    "Table": {
+        "no-data": "No data"
+    },
+    "Users": {
+        "user-list": "User list"
     }
 }

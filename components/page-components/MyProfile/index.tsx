@@ -6,20 +6,15 @@ import { motion } from "framer-motion";
 import { slideFromBottomAnimation } from "@/constants";
 import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
-import { Table } from "@/components/ui/Table";
 import MyKeys from "@/components/common/MyKeys";
 import { useTranslations } from "next-intl";
 import PromptHistory from "@/components/common/PromptHistory";
+import { useMessages } from "@/hooks/useMessages";
+import Transactions from "@/components/common/Transactions";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     const t = useTranslations("Profile");
-
-    const promptHistory = [
-        [1, "Створи таску в Трелло", "2024-02-15"],
-        [3, "Створи опис для нового курсу по програмуванню", "2024-02-12"],
-        [2, "Привіт gpt", "2024-02-14"],
-        [4, "Що таке AI?", "2024-02-13"],
-    ];
+    const { messages } = useMessages(profile);
 
     return (
         <motion.div
@@ -37,7 +32,8 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                         isSelfProfile={true}
                     />
                     <MyKeys />
-                    <PromptHistory history={promptHistory} />
+                    <PromptHistory history={messages} />
+                    <Transactions transactions={[]} />
                 </div>
             </div>
         </motion.div>
