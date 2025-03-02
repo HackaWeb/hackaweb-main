@@ -111,7 +111,7 @@ export const ChatPageComponent = ({ profile }: ChatProps) => {
                             onClick={cleanChatHistory}
                         >
                             <FaTrashAlt size={20} />
-                            Clean Chat
+                            {t("clean-chat")}
                         </Button>
                         <Button
                             color="purpleBackground"

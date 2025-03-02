@@ -78,7 +78,8 @@
         "type-message": "Напишіть повідомлення...",
         "task-examples": "Приклади завдань",
         "create-board": "Створити дошку з назвою ",
-        "create-task": "Додати картку з назвою "
+        "create-task": "Додати картку з назвою ",
+        "clean-chat": "Очистити чат"
     },
     "PromptTable": {
         "id": "ID",
@@ -112,6 +113,15 @@
         "no-data": "Немає даних"
     },
     "Users": {
-        "user-list": "Усі користувачі"
+        "user-list": "Усі користувачі",
+        "id": "ID",
+        "first-name": "Ім'я",
+        "last-name": "Прізвище",
+        "email": "Пошта",
+        "registration-date":"Дата реєстрації",
+        "balance": "Баланс",
+        "actions": "Дії",
+        "edit":"Редагувати",
+        "delete":"Видалити"
     }
 }
